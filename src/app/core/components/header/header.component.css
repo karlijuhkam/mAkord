@@ -1,0 +1,51 @@
+#header {
+  background-color: #090B18;
+  height: 55px;
+  text-align: center;
+  padding-top: 9px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1034;
+}
+
+h2 {
+  margin: 0;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.logo {
+  font-weight: 300;
+  color: #FFF;
+  font-size: 18px;
+  position: absolute;
+  left: 58px;
+  top: 17px;
+}
+
+input {
+  font-size: 12px;
+}
+
+.search {
+  border-radius: 32px;
+  border: 0;
+}
+
+.searchbox {
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .logo {
+    opacity: 0;
+  }
+
+  .searchbox {
+    margin-right: 30px;
+  }
+}

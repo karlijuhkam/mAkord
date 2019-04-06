@@ -1,0 +1,49 @@
+<div class="container" id="container" [class.right-panel-active]="rightPanelActive">
+  <div class="form-container sign-up-container">
+    <div class="separator"></div>
+    <form action="#">
+      <h1>Registreeru</h1>
+      <input type="text" placeholder="Eesnimi" />
+      <input type="text" placeholder="Perekonnanimi" />
+      <input type="text" placeholder="Kasutajanimi" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Parool" />
+      <button>Registreeru</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <div class="closeBtn"><i (click)="closeModal()" class="fas fa-times"></i></div>
+    <form *ngIf="!forgotPassword" (ngSubmit)="onLogin()">
+        <h1>Logi sisse</h1>
+        <input [(ngModel)]="loginRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
+        <input [(ngModel)]="loginRequest.password" name="password" type="password" placeholder="Parool" />
+        <a (click)="forgotPassword=true">Unustasid parooli?</a>
+        <button *ngIf="!isSubmitting">Logi sisse</button>
+        <mat-spinner
+                *ngIf="isSubmitting"
+                [diameter]="40"
+                mode="indeterminate">
+        </mat-spinner>
+    </form>
+    <form *ngIf="forgotPassword" action="#">
+      <h1>Taasta parool</h1>
+      <input type="email" placeholder="Email" />
+      <a (click)="forgotPassword=false">Tagasi</a>
+      <button>Saada uus parool</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Oled juba kasutaja?</h1>
+        <p>Et sisse logida, vajuta all olevale nupule.</p>
+        <button class="ghost" (click)="rightPanelActive=false" id="signIn">Logi sisse</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Tere, külaline!</h1>
+        <p>Loo omale kasutaja, et hoida oma lemmiklood salvestatud ning lisa neid juurde!</p>
+        <button class="ghost" (click)="rightPanelActive=true" id="signUp">Registreeru</button>
+      </div>
+    </div>
+  </div>
+</div>
