@@ -18,7 +18,7 @@ html {
   background-repeat: none;
 }
 
-#content{
+.content{
   margin-left:190px;
   margin-top: 55px;
   min-height: calc(100vh - 55px);
