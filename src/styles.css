@@ -15,6 +15,13 @@ body {
 html {
   background: url('/assets/img/amplifier-768536_1920.jpg');
   background-size: cover;
+  background-repeat: none;
+}
+
+#content{
+  margin-left:190px;
+  margin-top: 55px;
+  min-height: calc(100vh - 55px);
 }
 
 .loginModal {

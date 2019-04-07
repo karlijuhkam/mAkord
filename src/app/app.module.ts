@@ -12,13 +12,15 @@ import {FormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule} from 'ngx-toastr';
+import { ProfileComponent } from './views/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    ProfileComponent
   ],
   imports: [
     HttpClientModule,

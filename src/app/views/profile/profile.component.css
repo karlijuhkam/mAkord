@@ -1,0 +1,21 @@
+.artist-img{
+    height:50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: .5em;
+    
+}
+
+.artist-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+
+.artist-row p{
+    margin: 0;
+}
