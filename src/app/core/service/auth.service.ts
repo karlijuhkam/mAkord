@@ -3,10 +3,11 @@ import {environment} from '../../../environments/environment';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {LoginRequest, LoginResponse, Token} from '../model/user/login';
+import {LoginRequest, LoginResponse, RegisterRequest, Token} from '../model/user/login';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorResponse} from '../model/error';
 import {UserService} from './user.service';
+import {User} from '../model/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +68,27 @@ export class AuthService {
             this.setToken(data.token);
             this.authenticated = true;
             this.userService.setUserData(data.user);
+            return observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  forgotPasswordRequest(email): Observable<any> {
+    return new Observable(observer => {
+      this.http.post(this.ENDPOINT + '/forgotpassword', email).subscribe(
+          (data) => {
+            observer.next(data);
+          }, (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  register(request: RegisterRequest): Observable<User> {
+    return new Observable(observer => {
+      this.http.post(this.ENDPOINT + '/register', request).subscribe(
+          (data: User) => {
             return observer.next(data);
           },
           (err: ErrorResponse) => this.handleError(observer, err)

@@ -1,14 +1,19 @@
 <div class="container" id="container" [class.right-panel-active]="rightPanelActive">
   <div class="form-container sign-up-container">
     <div class="separator"></div>
-    <form action="#">
+    <form (ngSubmit)="onRegister()">
       <h1>Registreeru</h1>
-      <input type="text" placeholder="Eesnimi" />
-      <input type="text" placeholder="Perekonnanimi" />
-      <input type="text" placeholder="Kasutajanimi" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Parool" />
-      <button>Registreeru</button>
+      <input [(ngModel)]="registerRequest.firstName" name="firstName" type="text" placeholder="Eesnimi" />
+      <input [(ngModel)]="registerRequest.lastName" name="lastName" type="text" placeholder="Perekonnanimi" />
+      <input [(ngModel)]="registerRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
+      <input [(ngModel)]="registerRequest.email" name="email" type="email" placeholder="Email" />
+      <input [(ngModel)]="registerRequest.password" name="password" type="password" placeholder="Parool" />
+      <button *ngIf="!isSubmitting">Registreeru</button>
+      <mat-spinner
+              *ngIf="isSubmitting"
+              [diameter]="40"
+              mode="indeterminate">
+      </mat-spinner>
     </form>
   </div>
   <div class="form-container sign-in-container">
@@ -25,11 +30,16 @@
                 mode="indeterminate">
         </mat-spinner>
     </form>
-    <form *ngIf="forgotPassword" action="#">
+    <form *ngIf="forgotPassword" (ngSubmit)="onForgotPassword()">
       <h1>Taasta parool</h1>
-      <input type="email" placeholder="Email" />
+      <input name="forgotPasswordEmail" [(ngModel)]="forgotPasswordEmail" type="email" placeholder="Email" />
       <a (click)="forgotPassword=false">Tagasi</a>
-      <button>Saada uus parool</button>
+      <button *ngIf="!isSubmitting">Saada uus parool</button>
+      <mat-spinner
+              *ngIf="isSubmitting"
+              [diameter]="40"
+              mode="indeterminate">
+      </mat-spinner>
     </form>
   </div>
   <div class="overlay-container">
