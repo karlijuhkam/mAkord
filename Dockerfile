@@ -13,7 +13,7 @@ RUN npm install
 
 # Copy sources and build appication as late as possible
 COPY . .
-RUN node_modules/.bin/ng build --prod
+RUN node_modules/.bin/ng build --prod --base-href ./
 
 # Create new image with only nginx to serve the app
 FROM nginx:1.15-alpine
@@ -22,4 +22,4 @@ FROM nginx:1.15-alpine
 COPY --from=builder /app/dist/makordid-client/. /usr/share/nginx/html
 COPY --from=builder /app/docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+EXPOSE 8000
