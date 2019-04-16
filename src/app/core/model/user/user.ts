@@ -6,11 +6,6 @@ export interface User {
     firstName: string;
     lastName: string;
     roles?: Role[];
-    picture?: string;
-    pictureThumb?: string;
-    noticeEmail?: string;
-    noticeFrequency?: number;
-    lang?: string;
     enabled?: boolean;
     passwordChanged?: boolean;
 }

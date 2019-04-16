@@ -8,9 +8,9 @@
       <input [(ngModel)]="registerRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
       <input [(ngModel)]="registerRequest.email" name="email" type="email" placeholder="Email" />
       <input [(ngModel)]="registerRequest.password" name="password" type="password" placeholder="Parool" />
-      <button *ngIf="!isSubmitting">Registreeru</button>
+      <button *ngIf="!isRegisterSubmitting">Registreeru</button>
       <mat-spinner
-              *ngIf="isSubmitting"
+              *ngIf="isRegisterSubmitting"
               [diameter]="40"
               mode="indeterminate">
       </mat-spinner>
@@ -20,12 +20,12 @@
     <div class="closeBtn"><i (click)="closeModal()" class="fas fa-times"></i></div>
     <form *ngIf="!forgotPassword" (ngSubmit)="onLogin()">
         <h1>Logi sisse</h1>
-        <input [(ngModel)]="loginRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
+        <input [(ngModel)]="loginRequest.email" name="email" type="email" placeholder="Email" />
         <input [(ngModel)]="loginRequest.password" name="password" type="password" placeholder="Parool" />
         <a (click)="forgotPassword=true">Unustasid parooli?</a>
-        <button *ngIf="!isSubmitting">Logi sisse</button>
+        <button *ngIf="!isLoginSubmitting">Logi sisse</button>
         <mat-spinner
-                *ngIf="isSubmitting"
+                *ngIf="isLoginSubmitting"
                 [diameter]="40"
                 mode="indeterminate">
         </mat-spinner>
@@ -34,9 +34,9 @@
       <h1>Taasta parool</h1>
       <input name="forgotPasswordEmail" [(ngModel)]="forgotPasswordEmail" type="email" placeholder="Email" />
       <a (click)="forgotPassword=false">Tagasi</a>
-      <button *ngIf="!isSubmitting">Saada uus parool</button>
+      <button *ngIf="!isForgotPasswordSubmitting">Saada uus parool</button>
       <mat-spinner
-              *ngIf="isSubmitting"
+              *ngIf="isForgotPasswordSubmitting"
               [diameter]="40"
               mode="indeterminate">
       </mat-spinner>

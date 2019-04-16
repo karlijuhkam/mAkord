@@ -54,13 +54,14 @@ export class AuthService {
         {
           id: token,
           expiry: expiry,
-          username: null
+          email: null
         });
   }
   removeToken(): void {
     this.setAuthenticated(false);
     localStorage.removeItem(this.TOKEN_KEY);
   }
+
   loginRequest(request: LoginRequest): Observable<LoginResponse> {
     return new Observable(observer => {
       this.http.post(this.ENDPOINT + '/login', request).subscribe(
@@ -92,6 +93,18 @@ export class AuthService {
             return observer.next(data);
           },
           (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  logoutRequest(): Observable<any> {
+    return new Observable(observer => {
+      this.http.post(this.ENDPOINT + '/logout', {}).subscribe(
+          (data: any) => {
+            this.removeToken();
+            this.userService.setUserData(null);
+            this.router.navigate(['/']);
+          }, (err: ErrorResponse) => this.handleError(observer, err)
       );
     });
   }

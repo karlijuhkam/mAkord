@@ -10,8 +10,9 @@ import { LoginModalComponent } from './core/modals/login-modal/login-modal.compo
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ToastrModule} from 'ngx-toastr';
+import {AuthInterceptor} from './core/interceptor/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,12 @@ import { ToastrModule} from 'ngx-toastr';
     LoginModalComponent
   ],
   providers: [
-    BsModalRef
+    BsModalRef,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
