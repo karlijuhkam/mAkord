@@ -1,35 +1,45 @@
 <div class="container" id="container" [class.right-panel-active]="rightPanelActive">
   <div class="form-container sign-up-container">
     <div class="separator"></div>
-    <form action="#">
+    <form (ngSubmit)="onRegister()">
       <h1>Registreeru</h1>
-      <input type="text" placeholder="Eesnimi" />
-      <input type="text" placeholder="Perekonnanimi" />
-      <input type="text" placeholder="Kasutajanimi" />
-      <input type="email" placeholder="Email" />
-      <input type="password" placeholder="Parool" />
-      <button>Registreeru</button>
+      <input [(ngModel)]="registerRequest.firstName" name="firstName" type="text" placeholder="Eesnimi" />
+      <input [(ngModel)]="registerRequest.lastName" name="lastName" type="text" placeholder="Perekonnanimi" />
+      <input [(ngModel)]="registerRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
+      <input [(ngModel)]="registerRequest.email" name="email" type="email" placeholder="Email" />
+      <input [(ngModel)]="registerRequest.password" name="password" type="password" placeholder="Parool" />
+      <button *ngIf="!isRegisterSubmitting">Registreeru</button>
+      <mat-spinner
+              *ngIf="isRegisterSubmitting"
+              [diameter]="40"
+              mode="indeterminate">
+      </mat-spinner>
     </form>
   </div>
   <div class="form-container sign-in-container">
     <div class="closeBtn"><i (click)="closeModal()" class="fas fa-times"></i></div>
     <form *ngIf="!forgotPassword" (ngSubmit)="onLogin()">
         <h1>Logi sisse</h1>
-        <input [(ngModel)]="loginRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
+        <input [(ngModel)]="loginRequest.email" name="email" type="email" placeholder="Email" />
         <input [(ngModel)]="loginRequest.password" name="password" type="password" placeholder="Parool" />
         <a (click)="forgotPassword=true">Unustasid parooli?</a>
-        <button *ngIf="!isSubmitting">Logi sisse</button>
+        <button *ngIf="!isLoginSubmitting">Logi sisse</button>
         <mat-spinner
-                *ngIf="isSubmitting"
+                *ngIf="isLoginSubmitting"
                 [diameter]="40"
                 mode="indeterminate">
         </mat-spinner>
     </form>
-    <form *ngIf="forgotPassword" action="#">
+    <form *ngIf="forgotPassword" (ngSubmit)="onForgotPassword()">
       <h1>Taasta parool</h1>
-      <input type="email" placeholder="Email" />
+      <input name="forgotPasswordEmail" [(ngModel)]="forgotPasswordEmail" type="email" placeholder="Email" />
       <a (click)="forgotPassword=false">Tagasi</a>
-      <button>Saada uus parool</button>
+      <button *ngIf="!isForgotPasswordSubmitting">Saada uus parool</button>
+      <mat-spinner
+              *ngIf="isForgotPasswordSubmitting"
+              [diameter]="40"
+              mode="indeterminate">
+      </mat-spinner>
     </form>
   </div>
   <div class="overlay-container">

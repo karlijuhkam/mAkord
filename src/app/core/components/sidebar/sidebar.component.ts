@@ -31,4 +31,11 @@ export class SidebarComponent implements OnInit {
   openLoginModal() {
     this.modalRef = this.modalService.show(LoginModalComponent, { class: 'loginModal', });
   }
+
+  onLogout() {
+    this.authService.logoutRequest().subscribe(
+        (data) => console.log(data),
+        err => console.log(err)
+    );
+  }
 }

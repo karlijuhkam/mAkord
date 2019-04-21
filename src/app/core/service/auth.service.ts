@@ -3,10 +3,11 @@ import {environment} from '../../../environments/environment';
 import {Observable, Subject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {LoginRequest, LoginResponse, Token} from '../model/user/login';
+import {LoginRequest, LoginResponse, RegisterRequest, Token} from '../model/user/login';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorResponse} from '../model/error';
 import {UserService} from './user.service';
+import {User} from '../model/user/user';
 
 @Injectable({
   providedIn: 'root'
@@ -53,13 +54,14 @@ export class AuthService {
         {
           id: token,
           expiry: expiry,
-          username: null
+          email: null
         });
   }
   removeToken(): void {
     this.setAuthenticated(false);
     localStorage.removeItem(this.TOKEN_KEY);
   }
+
   loginRequest(request: LoginRequest): Observable<LoginResponse> {
     return new Observable(observer => {
       this.http.post(this.ENDPOINT + '/login', request).subscribe(
@@ -70,6 +72,39 @@ export class AuthService {
             return observer.next(data);
           },
           (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  forgotPasswordRequest(email): Observable<any> {
+    return new Observable(observer => {
+      this.http.post(this.ENDPOINT + '/forgotpassword', email).subscribe(
+          (data) => {
+            observer.next(data);
+          }, (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  register(request: RegisterRequest): Observable<User> {
+    return new Observable(observer => {
+      this.http.post(this.ENDPOINT + '/register', request).subscribe(
+          (data: User) => {
+            return observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  logoutRequest(): Observable<any> {
+    return new Observable(observer => {
+      this.http.post(this.ENDPOINT + '/logout', {}).subscribe(
+          (data: any) => {
+            this.removeToken();
+            this.userService.setUserData(null);
+            this.router.navigate(['/']);
+          }, (err: ErrorResponse) => this.handleError(observer, err)
       );
     });
   }
