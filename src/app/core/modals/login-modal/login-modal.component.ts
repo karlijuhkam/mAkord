@@ -37,11 +37,11 @@ export class LoginModalComponent implements OnInit {
     this.isLoginSubmitting = true;
     this.authService.loginRequest(this.loginRequest).subscribe((data) => {
       this.isLoginSubmitting = false;
-      this.toastr.success('Tere tulemast, ' + data.user.firstName + ' ' + data.user.lastName);
+      this.toastr.success('Tere tulemast, ' + data.user.username);
       this.closeModal();
     }, (err) => {
       this.isLoginSubmitting = false;
-      this.toastr.error('Vale kasutaja või parool');
+      this.toastr.error('Vale email või parool');
     });
   }
 

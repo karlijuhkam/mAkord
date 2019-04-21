@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,800');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
 
@@ -8,7 +8,8 @@
 }
 
 body {
-  margin: 0;
+  background-color: transparent;
+  margin-top: 55px;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -20,3 +21,28 @@ html {
 .loginModal {
   max-width: 750px;
 }
+
+.toast-success {
+  background-color: #00A861;
+}
+.toast-error {
+  background-color: #c0392b;
+}
+
+.toast-container {
+  box-shadow: black;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+}
+
+.ngx-toastr {
+  height: 48px;
+}
+
+.toast-container .ngx-toastr {
+  -webkit-box-shadow: inset 0 0 0 #000;
+  -moz-box-shadow: inset 0 0 0 #000;
+  box-shadow: inset 0 0 0 #000;
+}
+
+

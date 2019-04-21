@@ -13,13 +13,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ToastrModule} from 'ngx-toastr';
 import {AuthInterceptor} from './core/interceptor/auth.interceptor';
+import { SongDetailsComponent } from './views/song-details/song-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    SongDetailsComponent
   ],
   imports: [
     HttpClientModule,

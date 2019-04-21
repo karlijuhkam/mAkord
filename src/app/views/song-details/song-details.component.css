@@ -1,0 +1,44 @@
+.container {
+    background-color: white;
+}
+#bandAndSong {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 15px;
+}
+
+#bandName {
+    font-weight: 800;
+    margin: 0;
+}
+
+.content {
+    margin-left: 150px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.toolbar {
+    width: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.transpose {
+    height: 30px;
+    width: 30px;
+    color: white;
+    background-color: #00A861;
+    border: 1px solid #00A861;
+}
+
+.transposeValue {
+    height: 30px;
+    width: 40px;
+    text-align: center;
+    background-color: white;
+    color: #090B18;
+    border: 1px solid #00A861;
+    display: inline-block;
+    font-weight: 400;
+}
