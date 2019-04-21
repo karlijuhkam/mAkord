@@ -1,0 +1,14 @@
+<div class="container">
+
+  <div class="title">
+        <h2 id="bandAndSong"><span id="bandName">{{activeSong?.band?.name}} </span>{{activeSong?.name}}</h2>
+  </div>
+  <div class="toolbar">
+    <button class="transpose" (click)="transposeUp()"><i class="fas fa-arrow-up"></i></button>
+    <button disabled class="transposeValue">{{transposeValue}}</button>
+    <button class="transpose" (click)="transposeDown()"><i class="fas fa-arrow-down"></i></button>
+  </div>
+  <pre [innerHTML]="transposedChords" class="content">
+  </pre>
+
+</div>
