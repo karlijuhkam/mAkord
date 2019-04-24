@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SongService} from '../../core/service/song.service';
 import {Song} from '../../core/model/song/song';
 import { transpose } from 'chord-transposer';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-song-details',
@@ -15,8 +16,10 @@ export class SongDetailsComponent implements OnInit {
   chords;
   transposedChords;
   transposeValue = 0;
+  liked;
+  likeCount;
 
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.songId = parseInt(window.location.pathname.split('/')[2], 10);
@@ -25,7 +28,12 @@ export class SongDetailsComponent implements OnInit {
           this.activeSong = data;
           this.chords = data.content;
           this.transposedChords = data.content;
-          console.log(this.activeSong);
+        }
+    );
+    this.songService.checkIfLiked(this.songId).subscribe(
+        data => {
+            this.liked = data.liked;
+            this.likeCount = data.likeCount;
         }
     );
   }
@@ -46,6 +54,21 @@ export class SongDetailsComponent implements OnInit {
       } else {
           this.transposeValue--;
       }
+  }
+
+  likeUnlike() {
+      this.songService.likeUnlikeSong(this.songId).subscribe(
+          data => {
+              if (this.liked) {
+                  this.toastr.success('Laul lemmikutest eemaldatud!');
+                  this.likeCount--;
+              } else {
+                  this.toastr.success('Laul lisatud lemmikutesse!');
+                  this.likeCount++;
+              }
+              this.liked = !this.liked;
+          }
+      );
   }
 
 }

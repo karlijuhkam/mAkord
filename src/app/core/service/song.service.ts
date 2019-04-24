@@ -25,6 +25,28 @@ export class SongService {
     });
   }
 
+  public likeUnlikeSong(id): Observable<any> {
+    return new Observable(observer => {
+      this.http.get(environment.API_URL + '/likesong/' + id).subscribe(
+          (data) => {
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  public checkIfLiked(id): Observable<any> {
+    return new Observable(observer => {
+      this.http.get(environment.API_URL + '/likecheck/' + id).subscribe(
+          (data) => {
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
   private handleError(observer, error: ErrorResponse) {
     observer.error(error);
   }

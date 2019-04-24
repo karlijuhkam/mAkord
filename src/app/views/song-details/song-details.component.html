@@ -7,6 +7,9 @@
     <button class="transpose" (click)="transposeUp()"><i class="fas fa-arrow-up"></i></button>
     <button disabled class="transposeValue">{{transposeValue}}</button>
     <button class="transpose" (click)="transposeDown()"><i class="fas fa-arrow-down"></i></button>
+    <button *ngIf="!liked" (click)="likeUnlike()">Lisa lemmikutesse</button>
+    <button *ngIf="liked" (click)="likeUnlike()">Eemalda lemmikutest</button>
+    <p>Like count: {{likeCount}}</p>
   </div>
   <pre [innerHTML]="transposedChords" class="content">
   </pre>
