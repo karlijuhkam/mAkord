@@ -3,6 +3,7 @@ import {SongService} from '../../core/service/song.service';
 import {Song} from '../../core/model/song/song';
 import { transpose } from 'chord-transposer';
 import {ToastrService} from 'ngx-toastr';
+import {UserService} from '../../core/service/user.service';
 
 @Component({
   selector: 'app-song-details',
@@ -18,24 +19,32 @@ export class SongDetailsComponent implements OnInit {
   transposeValue = 0;
   liked;
   likeCount;
+  userData;
 
-  constructor(private songService: SongService, private toastr: ToastrService) { }
+  constructor(private songService: SongService, private userService: UserService, private toastr: ToastrService) {
+      this.userService.currentUser.subscribe(currentUser => {
+          this.userData = currentUser;
+      });
+  }
 
   ngOnInit() {
+    this.userService.currentUser.next(this.userData);
     this.songId = parseInt(window.location.pathname.split('/')[2], 10);
     this.songService.getActiveSongById(this.songId).subscribe(
         data => {
           this.activeSong = data;
           this.chords = data.content;
           this.transposedChords = data.content;
+          this.likeCount = data.likeCount;
         }
     );
-    this.songService.checkIfLiked(this.songId).subscribe(
-        data => {
-            this.liked = data.liked;
-            this.likeCount = data.likeCount;
-        }
-    );
+    if (this.userData) {
+        this.songService.checkIfLiked(this.songId).subscribe(
+            data => {
+                this.liked = data.liked;
+            }
+        );
+    }
   }
 
   transposeUp() {
@@ -58,7 +67,7 @@ export class SongDetailsComponent implements OnInit {
 
   likeUnlike() {
       this.songService.likeUnlikeSong(this.songId).subscribe(
-          data => {
+          () => {
               if (this.liked) {
                   this.toastr.success('Laul lemmikutest eemaldatud!');
                   this.likeCount--;

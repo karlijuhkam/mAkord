@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {BsModalService} from 'ngx-bootstrap';
+import {UserService} from '../../service/user.service';
+import {AuthService} from '../../service/auth.service';
+import {LoginModalComponent} from '../../modals/login-modal/login-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  userData;
+  modalRef;
+
+  constructor(private modalService: BsModalService,
+              private userService: UserService,
+              private authService: AuthService) {
+    this.userService.currentUser.subscribe(currentUser => {
+      this.userData = currentUser;
+    });
+  }
 
   ngOnInit() {
+    this.userService.currentUser.next(this.userData);
+  }
+
+  openLoginModal() {
+    this.modalRef = this.modalService.show(LoginModalComponent, { class: 'loginModal', });
+  }
+
+  onLogout() {
+    this.authService.logoutRequest().subscribe(
+        (data) => console.log(data),
+        err => console.log(err)
+    );
   }
 
 }

@@ -10,11 +10,12 @@ import { AuthService } from '../service/auth.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators';
 import { Router } from '@angular/router';
+import {UserService} from '../service/user.service';
 
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    constructor(public auth: AuthService, private router: Router) { }
+    constructor(public auth: AuthService, private router: Router, private userService: UserService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (this.auth.getToken()) {
             request = request.clone({
@@ -34,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (err.status === 401) {
             console.log('handled error ' + err.status);
             this.auth.removeToken();
-            this.router.navigate([`/login`]);
+            this.router.navigate([`/`]);
             return of(err.message);
         }
         throw err;

@@ -3,8 +3,6 @@
     <div class="separator"></div>
     <form (ngSubmit)="onRegister()">
       <h1>Registreeru</h1>
-      <input [(ngModel)]="registerRequest.firstName" name="firstName" type="text" placeholder="Eesnimi" />
-      <input [(ngModel)]="registerRequest.lastName" name="lastName" type="text" placeholder="Perekonnanimi" />
       <input [(ngModel)]="registerRequest.username" name="username" type="text" placeholder="Kasutajanimi" />
       <input [(ngModel)]="registerRequest.email" name="email" type="email" placeholder="Email" />
       <input [(ngModel)]="registerRequest.password" name="password" type="password" placeholder="Parool" />

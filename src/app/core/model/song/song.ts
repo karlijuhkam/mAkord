@@ -5,6 +5,7 @@ export interface Song {
     id: number;
     name: string;
     content: string;
+    likeCount: number;
     band: Band;
     user: User;
 }

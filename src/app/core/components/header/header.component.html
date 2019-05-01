@@ -1,6 +1,36 @@
-<div id="header">
-  <h2 class="inline logo">mAkordid</h2>
-  <div class="col-lg-4 col-md-6 col-sm-4 col-xs-4 searchbox">
-    <input class="form-control form-control-lg form-control-borderless search" type="search" placeholder="Otsi laulu/ansamblit">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" routerLink="/"><img class="logo" src="/assets/img/logo.png" alt="mAkordid"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="userData" class="nav-item active">
+        <a class="nav-link" href="#"><svg-icon src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Lisa lugu</a>
+      </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg-icon src="/assets/svg/playlist-2.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Muusika <i style="font-size: 9px" class="fas fa-chevron-down"></i></a>
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <a routerLink="bands" class="dropdown-item" href="#"><svg-icon src="/assets/svg/users.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Ansamblid</a>
+          <a class="dropdown-item" href="#"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':25, 'fill':'rgb(0,168,97)','margin-bottom.px':4,'margin-left.px':-3 }"></svg-icon>  Populaarseimad lood</a>
+          <a class="dropdown-item" href="#"><svg-icon src="/assets/svg/boombox.svg" [svgStyle]="{ 'width.px':25, 'fill':'rgb(0,168,97)','margin-bottom.px':4,'margin-left.px':-3 }"></svg-icon>  Populaarseimad ansamblid</a>
+          <a class="dropdown-item" href="#"><svg-icon src="/assets/svg/fast-forward.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Viimati lisatud lood</a>
+        </div>
+      </li>
+      <li (click)="openLoginModal()" *ngIf="!userData" class="nav-item active">
+          <a class="nav-link"><svg-icon src="/assets/svg/login.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Logi sisse</a>
+      </li>
+      <li *ngIf="userData" class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg-icon src="/assets/svg/user.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> {{ userData?.username }}  <i style="font-size: 9px" class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdown02">
+              <a class="dropdown-item" href="#"><svg-icon src="/assets/svg/agenda.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Minu profiil</a>
+              <a class="dropdown-item" (click)="onLogout()"><svg-icon src="/assets/svg/logout.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Logi välja</a>
+          </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-md-0">
+      <input class="form-control" type="text" placeholder="Otsi laulu/ansamblit">
+    </form>
   </div>
-</div>
+</nav>

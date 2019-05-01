@@ -19,7 +19,7 @@ export class LoginModalComponent implements OnInit {
   rightPanelActive = false;
   forgotPassword = false;
   loginRequest = new LoginRequest('', '');
-  registerRequest = new RegisterRequest('', '', '', '', '');
+  registerRequest = new RegisterRequest('', '', '');
   forgotPasswordEmail = '';
 
   constructor(private modalRef: BsModalRef,
@@ -39,9 +39,13 @@ export class LoginModalComponent implements OnInit {
       this.isLoginSubmitting = false;
       this.toastr.success('Tere tulemast, ' + data.user.username);
       this.closeModal();
-    }, (err) => {
+    }, (err: HttpErrorResponse) => {
       this.isLoginSubmitting = false;
-      this.toastr.error('Vale email või parool');
+      if (err.status === 403 ) {
+          this.toastr.error('Kasutaja on blokeeritud!');
+      } else {
+          this.toastr.error('Vale email või parool');
+      }
     });
   }
 

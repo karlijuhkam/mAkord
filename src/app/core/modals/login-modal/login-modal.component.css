@@ -42,7 +42,7 @@ a {
 }
 
 button {
-  border-radius: 20px;
+  border-radius: 0;
   border: 1px solid #00A861;
   background-color: #00A861;
   color: #FFFFFF;

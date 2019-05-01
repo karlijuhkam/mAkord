@@ -25,6 +25,28 @@ export class SongService {
     });
   }
 
+  public getPopularSongs(): Observable<any> {
+      return new Observable(observer => {
+          this.http.get(environment.API_URL + '/popularsongs').subscribe(
+              (data: any) => {
+                  observer.next(data);
+              },
+              (err: ErrorResponse) => this.handleError(observer, err)
+          );
+      });
+  }
+
+  public getRecentSongs(): Observable<any> {
+      return new Observable(observer => {
+          this.http.get(environment.API_URL + '/recentsongs').subscribe(
+              (data: any) => {
+                  observer.next(data);
+              },
+              (err: ErrorResponse) => this.handleError(observer, err)
+          );
+      });
+  }
+
   public likeUnlikeSong(id): Observable<any> {
     return new Observable(observer => {
       this.http.get(environment.API_URL + '/likesong/' + id).subscribe(

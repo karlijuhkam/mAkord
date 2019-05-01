@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="flex-item-main" data-aos="fade-up" data-aos-duration="700">
+    <div class="head">
+      <h1><svg-icon src="/assets/svg/levels-1.svg" [svgStyle]="{ 'width.px':50, 'fill':'rgb(0,168,97)', 'margin-bottom.px':7 }"></svg-icon> Ansamblid</h1>
+    </div>
+    <div>
+      <ul class="bandListContainer">
+        <li class="flex-item-list" *ngFor="let band of allBands"><span class="startingLetter">{{band.name | slice:0:1}}</span><span class="bandListName">{{band.name}}</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="sidebarContainer">
+    <div class="flex-item-sidebar" data-aos="fade-up" data-aos-duration="900">
+      <h6 class="cardHeader"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':32, 'fill':'rgb(0,168,97)' }"></svg-icon> Populaarseimad lood</h6>
+      <ul>
+        <li [routerLink]="'/song/' + popular.id" class="popListItem" *ngFor="let popular of popularSongs"><div class="popListItemCol"><span class="bandName">{{popular.band?.name}}</span> {{popular.name}}</div><div class="popListItemCol like"><span>{{popular.likeCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon> </div></li>
+      </ul>
+      <button>Vaata veel</button>
+    </div>
+    <div class="flex-item-sidebar" data-aos="fade-up" data-aos-duration="1100">
+      <h6 class="cardHeader"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':32, 'fill':'rgb(0,168,97)' }"></svg-icon> Viimati lisatud lood</h6>
+      <ul>
+        <li [routerLink]="'/song/' + recent.id" class="popListItem" *ngFor="let recent of recentSongs"><div class="popListItemCol"><span class="bandName">{{recent.band?.name}}</span> {{recent.name}}</div></li>
+      </ul>
+      <button>Vaata veel</button>
+    </div>
+  </div>
+</div>

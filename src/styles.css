@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,800');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
 
@@ -14,8 +14,10 @@ body {
 }
 
 html {
-  background: url('/assets/img/amplifier-768536_1920.jpg');
+  background: url('/assets/img/bg-new.png');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-color: black;
 }
 
 .loginModal {
