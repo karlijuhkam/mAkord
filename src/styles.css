@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
+@import "~@ng-select/ng-select/themes/default.theme.css";
 
 .mat-progress-spinner circle, .mat-spinner circle {
   stroke: #00A861;
@@ -21,6 +22,10 @@ html {
 }
 
 .loginModal {
+  max-width: 750px;
+}
+
+.addSongModal {
   max-width: 750px;
 }
 
@@ -47,4 +52,37 @@ html {
   box-shadow: inset 0 0 0 #000;
 }
 
+.modal-content {
+  border-radius: 0;
+  border: 0;
+}
 
+.ng-select .ng-select-container {
+    border-radius: 0;
+    border: 0;
+    font-size: 0.8rem;
+    background-color: #f6f6f6;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ng-select.ng-select-opened .ng-select-container {
+    background-color: #f6f6f6;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected
+.ng-option-label, .ng-dropdown-panel .ng-dropdown-panel-items
+.ng-option.ng-option-selected.ng-option-marked .ng-option-label {
+    color: #00A861;
+}
+
+.ng-dropdown-panel {
+    font-size: 0.8rem;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected, .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected.ng-option-marked {
+    background-color: #f9f9f9;
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+    background-color: #f9f9f9;
+}

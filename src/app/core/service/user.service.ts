@@ -30,15 +30,13 @@ export class UserService {
       this.http.get(environment.API_URL + '/profile').subscribe(
           (data: User) => {
             this.setUserData(data);
-            if (!data.passwordChanged) {
-              this.router.navigate(['/profile', { password: 'show' }]);
-            }
             observer.next(data);
           },
           (err: ErrorResponse) => this.handleError(observer, err)
       );
     });
   }
+
   public setUserData(user: User) {
     if (!user) {
       localStorage.removeItem(this.STORAGE_KEY);
@@ -46,6 +44,17 @@ export class UserService {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(user));
     }
     this.currentUser.next(user);
+  }
+
+  public getTopUsers(): Observable<any> {
+    return new Observable(observer => {
+      this.http.get(environment.API_URL + '/topusers').subscribe(
+          (data: any) => {
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
   }
 
   handleError(observer, error: ErrorResponse) {

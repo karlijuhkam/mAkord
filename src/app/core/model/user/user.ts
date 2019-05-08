@@ -5,6 +5,6 @@ export interface User {
     email: string;
     username: string;
     roles?: Role[];
-    enabled?: boolean;
-    passwordChanged?: boolean;
+    likedSongsCount: number;
+    addedSongsCount: number;
 }

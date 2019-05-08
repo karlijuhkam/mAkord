@@ -3,6 +3,7 @@ import {BsModalService} from 'ngx-bootstrap';
 import {UserService} from '../../service/user.service';
 import {AuthService} from '../../service/auth.service';
 import {LoginModalComponent} from '../../modals/login-modal/login-modal.component';
+import {AddSongModalComponent} from '../../modals/add-song-modal/add-song-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -36,5 +37,10 @@ export class HeaderComponent implements OnInit {
         err => console.log(err)
     );
   }
+
+  openAddSongModal() {
+    this.modalRef = this.modalService.show(AddSongModalComponent, { class: 'addSongModal', });
+  }
+
 
 }

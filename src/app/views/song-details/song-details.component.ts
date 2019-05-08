@@ -20,6 +20,7 @@ export class SongDetailsComponent implements OnInit {
   liked;
   likeCount;
   userData;
+  youtubeId;
 
   constructor(private songService: SongService, private userService: UserService, private toastr: ToastrService) {
       this.userService.currentUser.subscribe(currentUser => {
@@ -36,6 +37,9 @@ export class SongDetailsComponent implements OnInit {
           this.chords = data.content;
           this.transposedChords = data.content;
           this.likeCount = data.likeCount;
+          if (this.activeSong.youtubeUrl) {
+              this.youtubeId = this.activeSong.youtubeUrl.split('=')[1];
+          }
         }
     );
     if (this.userData) {

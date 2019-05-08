@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SongService} from '../../core/service/song.service';
 import {Song} from '../../core/model/song/song';
+import {UserService} from '../../core/service/user.service';
+import {User} from '../../core/model/user/user';
 
 @Component({
   selector: 'app-landing-page',
@@ -10,9 +12,11 @@ import {Song} from '../../core/model/song/song';
 export class LandingPageComponent implements OnInit {
 
   popularSongs: Song[];
+  topUsers: User[];
   recentSongs: Song[];
 
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.songService.getPopularSongs().subscribe(
@@ -21,13 +25,9 @@ export class LandingPageComponent implements OnInit {
     this.songService.getRecentSongs().subscribe(
         data => this.recentSongs = data.content
     );
+    this.userService.getTopUsers().subscribe(
+      data => this.topUsers = data.content
+    );
   }
 
-  logPop() {
-    console.log(this.popularSongs);
-  }
-
-  logRec() {
-    console.log(this.recentSongs);
-  }
 }

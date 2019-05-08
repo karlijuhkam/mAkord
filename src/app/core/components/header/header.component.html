@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <ul class="navbar-nav mr-auto">
       <li *ngIf="userData" class="nav-item active">
-        <a class="nav-link" href="#"><svg-icon src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Lisa lugu</a>
+        <a class="nav-link" (click)="openAddSongModal()"><svg-icon src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Lisa lugu</a>
       </li>
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg-icon src="/assets/svg/playlist-2.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Muusika <i style="font-size: 9px" class="fas fa-chevron-down"></i></a>
@@ -24,7 +24,8 @@
       <li *ngIf="userData" class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg-icon src="/assets/svg/user.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> {{ userData?.username }}  <i style="font-size: 9px" class="fas fa-chevron-down"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdown02">
-              <a class="dropdown-item" href="#"><svg-icon src="/assets/svg/agenda.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Minu profiil</a>
+              <a *ngIf="userData?.roles[0].name === 'admin'" class="dropdown-item"><svg-icon src="/assets/svg/settings.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':2 }"></svg-icon>  Kontrollpaneel</a>
+              <a class="dropdown-item"><svg-icon src="/assets/svg/agenda.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Minu profiil</a>
               <a class="dropdown-item" (click)="onLogout()"><svg-icon src="/assets/svg/logout.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)','margin-bottom.px':4 }"></svg-icon>  Logi välja</a>
           </div>
       </li>

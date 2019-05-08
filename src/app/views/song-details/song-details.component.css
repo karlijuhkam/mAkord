@@ -1,44 +1,188 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:500');
+
 .container {
-    background-color: white;
+    margin-top: 4%;
+    display: flex;
+    max-width: 70%;
+    padding-left: 0;
+    padding-right: 0;
 }
-#bandAndSong {
+
+.bandListContainer {
+    display: flex;
+    flex-direction: column;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    max-height: 70vh;
+    padding-bottom: 50px;
+    list-style: none;
+}
+
+.flex-item-list {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    position:relative;
+    display:inline-block;
+    overflow:hidden;
+    background-color: #eee;
+    margin: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.flex-item-list:hover .startingLetter {
+    background-color: #007e3f;
+    transition: 0.3s;
+}
+
+.flex-item-list:hover {
+    background-color: #dfdfdf;
+    transition: 0.3s;
+}
+
+.startingLetter {
     text-align: center;
-    padding-top: 30px;
-    padding-bottom: 15px;
+    float:left;
+    background-color: #00A861;
+    color: #FFF;
+    width: 60px;
+    padding: 15px;
+    transition: 0.3s;
 }
 
-#bandName {
-    font-weight: 800;
-    margin: 0;
+.bandListName {
+    padding: 18px;
+    line-height: 55px;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+.flex-item-main {
+    width: 66%;
+    margin: auto;
+    background-color: rgba(255,255,255,0.96);
 }
 
-.content {
-    margin-left: 150px;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.toolbar {
-    width: 200px;
+.flex-item-sidebar{
     text-align: center;
+    background-color: rgba(255,255,255,0.96);
+    margin-bottom: 22px;
+}
+
+.flex-item-sidebar button {
+    color: #FFF;
+    background-color: #00A861;
+    width: 100%;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 400;
+    height: 40px;
+    transition: 0.3s;
+}
+
+button:focus {outline:0;}
+
+.flex-item-sidebar button:hover {
+    background-color: #007e3f;
+    transition: 0.3s;
+}
+
+.flex-item-sidebar ul {
+    padding-left: 0;
+}
+
+.cardHeader {
+    text-align: center;
+    padding: 15px 15px 3px 15px;
+    font-weight: 400;
+}
+
+.sidebarContainer {
+    width: 31%;
+    height: 70%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.head {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.head h1 {
+    font-weight: 400;
+}
+
+.mainList {
+    width: 60%;
+    text-align: left;
+    margin-left: 40%;
+    list-style: none;
+}
+
+.mainList li {
+    padding-top: 3px;
+    font-weight: 500;
+}
+
+.highlight {
+    color: #00A861;
+}
+
+img {
+    width: 100%;
+}
+
+.bandName {
+    color: #FFF;
+    background-color: rgba(8, 8, 8, 0.6);
+    border-left: 3px solid #00A861;
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 4px 6px;
+}
+
+.popListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 20px;
+    width: 100%;
+    height: 2.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.like {
+    text-align: right;
+    font-size: 0.92rem;
+    width: 10%;
+}
+
+iframe {
+    border: 0;
+    border-bottom: 5px solid #00A861;
+    margin-bottom: -7px;
+}
+
+pre {
+    text-align: left;
+    width: 70%;
     margin: 0 auto;
 }
 
-.transpose {
-    height: 30px;
-    width: 30px;
-    color: white;
-    background-color: #00A861;
-    border: 1px solid #00A861;
-}
-
-.transposeValue {
-    height: 30px;
-    width: 40px;
-    text-align: center;
-    background-color: white;
-    color: #090B18;
-    border: 1px solid #00A861;
-    display: inline-block;
-    font-weight: 400;
+.content {
+    display: block;
+    font-family: Roboto Mono;
+    font-weight: 500;
+    font-size: 14px;
+    white-space: pre;
+    text-align: left;
+    width: 70%;
+    margin: 0 auto;
 }

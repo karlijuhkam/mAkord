@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { LoginModalComponent } from './core/modals/login-modal/login-modal.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ToastrModule} from 'ngx-toastr';
@@ -16,6 +16,9 @@ import { SongDetailsComponent } from './views/song-details/song-details.componen
 import {AngularSvgIconModule} from 'angular-svg-icon';
 import { LandingPageComponent } from './views/landing-page/landing-page.component';
 import { BandsComponent } from './views/bands/bands.component';
+import { AddSongModalComponent } from './core/modals/add-song-modal/add-song-modal.component';
+import {NgSelectModule} from '@ng-select/ng-select';
+import { SafePipe } from './core/pipes/safe.pipe';
 
 
 @NgModule({
@@ -25,7 +28,9 @@ import { BandsComponent } from './views/bands/bands.component';
     LoginModalComponent,
     SongDetailsComponent,
     LandingPageComponent,
-    BandsComponent
+    BandsComponent,
+    AddSongModalComponent,
+    SafePipe
   ],
   imports: [
     HttpClientModule,
@@ -36,6 +41,8 @@ import { BandsComponent } from './views/bands/bands.component';
     FormsModule,
     MatProgressSpinnerModule,
     AngularSvgIconModule,
+    NgSelectModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       closeButton: true,
@@ -43,7 +50,8 @@ import { BandsComponent } from './views/bands/bands.component';
     })
   ],
   entryComponents: [
-    LoginModalComponent
+    LoginModalComponent,
+    AddSongModalComponent
   ],
   providers: [
     BsModalRef,

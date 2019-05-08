@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="sidebar">
+   Lisa lugu
+  </div>
+  <div class="content">
+    <form [formGroup]="addSongForm">
+        <h1>Ansambel*</h1>
+        <label class="label">Vali ansambel nimistust
+            <input type="radio" checked="checked" name="radio" (click)="updateValidators(true)">
+            <span class="checkmark"></span>
+        </label>
+        <label class="label">Ansambli nimi puudub nimistust
+            <input type="radio" name="radio" (click)="updateValidators(false)">
+            <span class="checkmark"></span>
+        </label>
+        <ng-select formControlName="band"
+                   placeholder="Vali ansambel" *ngIf="bandFromList" [items]="allBands" bindLabel="name"></ng-select>
+        <div *ngIf="addSongFormSubmitted && addSongForm.controls.band.errors" class="validationError">
+            <div *ngIf="addSongForm.controls.band.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Ansambli valik on <b>kohustuslik!</b></div>
+        </div>
+        <input formControlName="suggestedBandName" placeholder="Sisesta ansambli nimi" *ngIf="!bandFromList" class="bandNameInput" type="text">
+        <div *ngIf="addSongFormSubmitted && addSongForm.controls.suggestedBandName.errors" class="validationError">
+            <div *ngIf="addSongForm.controls.suggestedBandName.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Ansambli nimi on <b>kohustuslik!</b></div>
+        </div>
+        <h1>Laulu nimi*</h1>
+        <input required formControlName="songName" placeholder="Sisesta laulu nimi" class="bandNameInput" type="text">
+        <div *ngIf="addSongFormSubmitted && addSongForm.controls.songName.errors" class="validationError">
+            <div *ngIf="addSongForm.controls.songName.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Laulu nimi on <b>kohustuslik!</b></div>
+        </div>
+        <h1>YouTube link</h1>
+        <input formControlName="youtubeUrl" placeholder="Sisesta laulu YouTube link" class="bandNameInput" type="text">
+        <h1>Laulu sõnad ja akordid*</h1>
+        <textarea required formControlName="content" class="bandNameInput textarea"></textarea>
+        <div *ngIf="addSongFormSubmitted && addSongForm.controls.content.errors" class="validationError">
+            <div *ngIf="addSongForm.controls.content.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Laulu sisu on <b>kohustuslik!</b></div>
+        </div>
+        <div class="buttonDiv">
+            <button type="button" class="submitButton" (click)="addSong()">Lisa lugu</button>
+        </div>
+    </form>
+  </div>
+</div>

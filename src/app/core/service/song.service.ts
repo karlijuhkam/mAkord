@@ -5,7 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs';
 import {ErrorResponse} from '../model/error';
 import {environment} from '../../../environments/environment';
-import {Song} from '../model/song/song';
+import {Song, SongRequest} from '../model/song/song';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +68,20 @@ export class SongService {
       );
     });
   }
+
+    public addSong(request: SongRequest, successMessage?: string): Observable<Song> {
+        return new Observable(observer => {
+            this.http.post(environment.API_URL + '/songs', request).subscribe(
+                (data: Song) => {
+                    if (successMessage) {
+                        this.toastr.success(successMessage);
+                    }
+                    observer.next(data);
+                },
+                (err: ErrorResponse) => this.handleError(observer, err)
+            );
+        });
+    }
 
   private handleError(observer, error: ErrorResponse) {
     observer.error(error);
