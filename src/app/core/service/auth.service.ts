@@ -103,6 +103,7 @@ export class AuthService {
           (data: any) => {
             this.removeToken();
             this.userService.setUserData(null);
+            this.router.navigate(['/']);
           }, (err: ErrorResponse) => this.handleError(observer, err)
       );
     });

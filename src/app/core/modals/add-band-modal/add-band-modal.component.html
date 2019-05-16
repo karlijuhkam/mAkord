@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="sidebar">
+    Lisa esitaja
+  </div>
+  <div class="content">
+    <form [formGroup]="addBandForm">
+      <h1>Esitaja*</h1>
+      <input required formControlName="name" placeholder="Sisesta esitaja nimi" class="bandNameInput" type="text">
+      <div *ngIf="addBandFormSubmitted && addBandForm.controls.name.errors" class="validationError">
+        <div *ngIf="addBandForm.controls.name.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Esitaja nimi on <b>kohustuslik!</b></div>
+      </div>
+      <h1>Lühitutvustus</h1>
+      <textarea formControlName="introduction" class="bandNameInput textarea"></textarea>
+      <div class="buttonDiv">
+        <button type="button" class="submitButton" (click)="addBand()">Lisa esitaja</button>
+      </div>
+    </form>
+  </div>
+</div>

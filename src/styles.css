@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
 
 .mat-progress-spinner circle, .mat-spinner circle {
   stroke: #00A861;
@@ -40,10 +43,11 @@ html {
   box-shadow: black;
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
+  border-radius: 0;
 }
 
 .ngx-toastr {
-  height: 48px;
+  min-height: 48px;
 }
 
 .toast-container .ngx-toastr {
@@ -69,6 +73,23 @@ html {
     background-color: #f6f6f6;
 }
 
+.custom .ng-select .ng-select-container {
+    flex-grow: 1;
+    border-radius: 0;
+    border: 0;
+    font-size: 0.8rem;
+    background-color: #f7f7f7;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 100%;
+    min-width: 120px;
+    height: 25px;
+    color: #333;
+}
+
+.custom .ng-select.ng-select-opened .ng-select-container {
+    background-color: #f7f7f7;
+}
+
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-selected
 .ng-option-label, .ng-dropdown-panel .ng-dropdown-panel-items
 .ng-option.ng-option-selected.ng-option-marked .ng-option-label {
@@ -85,4 +106,50 @@ html {
 
 .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
     background-color: #f9f9f9;
+}
+
+.ngx-datatable.material .datatable-body .datatable-body-row .datatable-body-cell {
+    font-size: 0.75rem!important;
+}
+
+.ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover, .ngx-datatable.material:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
+    background-color: #f7f7f7;
+}
+
+input:focus, ng-select:focus {
+    outline: none;
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+    background-color: rgba(0, 168, 97, 0.04);
+}
+
+.ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value .ng-value-icon.left {
+    border-right: 1px solid #00A861;
+}
+
+.ng-select {
+    height: auto;
+}
+
+.ngx-datatable.material .datatable-footer .datatable-pager a {
+    color: rgba(0, 168, 97, 0.9);
+    font-weight: 500;
+}
+
+.ngx-datatable.material .datatable-footer .datatable-pager a:hover {
+    color: rgba(0, 168, 97, 1);
+    background-color: #f7f7f7;
+}
+
+.ngx-datatable.material .datatable-footer .datatable-pager li.disabled a {
+    color: rgba(0, 168, 97, 0.4)!important;
+}
+
+.ngx-datatable.material .datatable-footer .datatable-pager li.active a {
+    background-color: #f7f7f7;
+}
+
+a:focus {
+    outline: none;
 }

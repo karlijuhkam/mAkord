@@ -42,9 +42,10 @@
 
 .textarea {
     min-height: 500px;
-    font-size: 1rem;
-    font-family: Arial;
-    font-weight: 500;
+    font-family: Montserrat;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: pre;
 }
 
 h1 {

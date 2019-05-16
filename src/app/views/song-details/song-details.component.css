@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:500');
-
 .container {
     margin-top: 4%;
     display: flex;
     max-width: 70%;
     padding-left: 0;
     padding-right: 0;
+    margin-bottom: 4%;
 }
 
 .bandListContainer {
@@ -62,7 +61,7 @@
 }
 .flex-item-main {
     width: 66%;
-    margin: auto;
+    margin: 0 auto;
     background-color: rgba(255,255,255,0.96);
 }
 
@@ -109,12 +108,15 @@ button:focus {outline:0;}
 
 .head {
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
+    position: relative;
 }
 
 .head h1 {
+    font-size: 2rem;
     font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .mainList {
@@ -138,18 +140,14 @@ img {
 }
 
 .bandName {
-    color: #FFF;
-    background-color: rgba(8, 8, 8, 0.6);
-    border-left: 3px solid #00A861;
-    font-size: 0.8rem;
-    font-weight: 400;
-    padding: 4px 6px;
+    font-weight: 600;
 }
 
 .popListItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     padding: 2px 20px;
     width: 100%;
     height: 2.5rem;
@@ -178,11 +176,112 @@ pre {
 
 .content {
     display: block;
-    font-family: Roboto Mono;
-    font-weight: 500;
+    font-family: Montserrat;
+    font-weight: 600;
     font-size: 14px;
     white-space: pre;
     text-align: left;
     width: 70%;
     margin: 0 auto;
+    padding-bottom: 70px;
+}
+
+.metaItem {
+    padding: 5px;
+    max-width: 25%;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-family: Montserrat;
+    font-weight: 500;
+}
+
+.date {
+    font-weight: 700;
+}
+
+.metaLink {
+    color: #00A861;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.metaLink:hover {
+    color: #007e3f;
+    transition: 0.3s;
+}
+
+.transpose {
+    background-color: #00A861;
+    border: 0;
+    height: 32px;
+    transition: 0.3s;
+    padding: 3px 7px;
+    display: block;
+}
+
+.transpose:hover {
+    background-color: #007e3f;
+    border: 0;
+    transition: 0.3s;
+}
+
+.transposeValue {
+    background-color: transparent;
+    border: 0;
+    border-left: 1px solid #00A861;
+    border-right: 1px solid #00A861;
+    width: 30px;
+    padding: 2px;
+    height: 28px;
+    font-size: 0.8rem;
+    display: block;
+}
+
+.dlPdf {
+    cursor: pointer;
+}
+
+.like {
+    text-align: right;
+    width: 100%;
+    padding-top: 15px;
+    padding-right: 15px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.toolbar {
+    position: absolute;
+    top: 107px;
+    left: 55px;
+}
+
+.editIcon {
+    margin-right: 7px;
+}
+
+.songDisabled {
+    text-align: center;
+    padding: 50px;
+}
+
+.songDisabled h1 {
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+ul {
+    margin: 15px;
+    padding-bottom: 15px;
+}
+
+ul li {
+    color: #333333;
+    transition: 0.3s;
+}
+
+ul li:hover {
+    color: #007e3f;
+    transition: 0.3s;
 }

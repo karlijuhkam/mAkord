@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="12.678mm" height="2.8597mm" version="1.1" viewBox="0 0 12.678 2.8597" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-2.7324 -152.06)">
+  <g fill="#f9f9f9" stroke-width=".01088">
+   <rect transform="rotate(31.196)" x="82.511" y="127.8" width=".18685" height="3.1874"/>
+   <rect transform="rotate(31.196)" x="82.922" y="127.56" width=".18685" height="3.1874"/>
+   <rect transform="rotate(31.196)" x="83.339" y="127.3" width=".18685" height="3.1874"/>
+  </g>
+  <g fill="#00a861" stroke-width=".01088">
+   <rect transform="rotate(31.196)" x="83.756" y="127.05" width=".18685" height="3.1874"/>
+   <rect transform="rotate(31.196)" x="84.173" y="126.8" width=".18685" height="3.1874"/>
+   <rect transform="rotate(31.196)" x="84.591" y="126.55" width=".18685" height="3.1874"/>
+  </g>
+  <text transform="scale(.97078 1.0301)" x="6.2038164" y="150.35796" fill="#000000" font-family="Montserrat" font-size="2.6986px" letter-spacing="0px" stroke-width=".067465" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="6.2038164" y="150.35796" fill="#f9f9f9" font-family="'Segoe UI'" font-weight="300" letter-spacing="-.16484px" stroke-width=".067465" word-spacing="-.01001px">mAkordid</tspan></text>
+ </g>
+</svg>

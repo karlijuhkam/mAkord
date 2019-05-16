@@ -1,0 +1,204 @@
+<div class="container">
+  <div  data-aos="fade-up" data-aos-duration="700" class="flex-item-main">
+  <div class="navDiv">
+      <div class="cpNavbar">
+        <div [class.active]="activeTab === 'users'" (click)="setActiveTab('users');getUsers();" class="cpTab">
+          <p><svg-icon src="/assets/svg/flickr.svg" [svgStyle]="{ 'width.px':15, 'fill':'rgb(0,168,97)', 'margin-bottom.px':2,'margin-right.px':2 }"></svg-icon>Kasutajad</p>
+        </div>
+        <div [class.active]="activeTab === 'bands'"  (click)="setActiveTab('bands');getBands();" class="cpTab">
+          <p><svg-icon src="/assets/svg/flickr.svg" [svgStyle]="{ 'width.px':15, 'fill':'rgb(0,168,97)', 'margin-bottom.px':2,'margin-right.px':2 }"></svg-icon>Esitajad</p>
+        </div>
+        <div [class.active]="activeTab === 'songs'"  (click)="setActiveTab('songs');getSongs();" class="cpTab">
+          <p><svg-icon src="/assets/svg/flickr.svg" [svgStyle]="{ 'width.px':15, 'fill':'rgb(0,168,97)', 'margin-bottom.px':2,'margin-right.px':2 }"></svg-icon>Laulud</p>
+        </div>
+      </div>
+  </div>
+  <div class="tableDiv" *ngIf="activeTab === 'users'">
+    <ngx-datatable class="material" *ngIf="userData" [rows]="userData" [columnMode]="'force'" [rowHeight]="50" [scrollbarH]="true"
+                   [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" (page)='setUserPage($event)' [count]="allUsers.totalElements"
+                   [offset]="allUsers.pageable?.pageNumber" [limit]="allUsers.size" [externalSorting]="true" (sort)="onUserSort($event)"
+                   [messages]="{emptyMessage:'Andmed puuduvad.',totalMessage: 'kasutajat'}">
+      <ngx-datatable-column prop="username" name="Kasutajanimi" width="80">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button routerLink="/song/{{row.id}}" type="button" class="btn btn-link btn-sm p-0 username">{{row.username}}</button>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column prop="email" name="Email" width="140">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row?.email}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column prop="addedSongsCount" name="Lisatud lugusid" width="30">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row?.addedSongsCount}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column prop="roles" name="Roll" width="60">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+              <a style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;" *ngFor="let role of row.roles; last as isLast">
+                  {{role.name | role}}<span *ngIf="!isLast">,</span>
+              </a>
+          </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Staatus" prop="status" width="25">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{row?.status | status}}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column prop="" name="" width="1">
+        <ng-template class="editCol" let-row="row" ngx-datatable-cell-template>
+            <p tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="editUser(row.id)" class="editUser"><svg-icon src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></p>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+      <div class="tableDiv" *ngIf="activeTab === 'songs'">
+          <ngx-datatable class="material" *ngIf="songData" [rows]="songData" [columnMode]="'force'" [rowHeight]="50" [scrollbarH]="true"
+                         [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" (page)='setSongPage($event)' [count]="allSongs.totalElements"
+                         [offset]="allSongs.pageable?.pageNumber" [limit]="allSongs.size" [externalSorting]="true" (sort)="onSongSort($event)"
+                         [messages]="{emptyMessage:'Andmed puuduvad.',totalMessage: 'laulu'}">
+              <ngx-datatable-column prop="name" name="Laulu nimi" width="80">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <button routerLink="/song/{{row.id}}" type="button" class="btn btn-link btn-sm p-0 username">{{row.name}}</button>
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="band" name="Esitaja" width="70">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.band}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="suggestedBand" name="Pakutud esitaja" width="70">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <a class="suggestedBand" (click)="openPrefilledBandModal(row?.suggestedBand)">{{row?.suggestedBand}}</a>
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="author" name="Sõnade autor" width="70">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.author}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="user" name="Lisaja" width="30">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.user}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="likeCount" name="Meeldimisi" width="20">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <p class="editUser">{{row.likeCount}} <svg-icon tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="editUser(row.id)" src="/assets/svg/heart-filled.svg" [svgStyle]="{ 'width.px':12, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></p>
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column name="Staatus" prop="status" width="25">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row?.status | status}}
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="" name="" width="1">
+                  <ng-template class="editCol" let-row="row" ngx-datatable-cell-template>
+                      <p class="editUser">
+                          <svg-icon tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="openEditSongModal(row)" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3, 'margin-right.px': 10 }"></svg-icon>
+                          <svg-icon tooltip="Kustuta" show-delay="400" placement="right" theme="light" (click)="openDeleteSongModal(row.id)" src="/assets/svg/garbage.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(194, 54, 22)', 'margin-bottom.px':4 }"></svg-icon>
+                      </p>
+                  </ng-template>
+              </ngx-datatable-column>
+          </ngx-datatable>
+      </div>
+      <div class="tableDiv" *ngIf="activeTab === 'bands'">
+          <ngx-datatable class="material" *ngIf="bandData" [rows]="bandData" [columnMode]="'force'" [rowHeight]="50" [scrollbarH]="true"
+                         [headerHeight]="50" [footerHeight]="50" [externalPaging]="true" (page)='setBandPage($event)' [count]="allBands.totalElements"
+                         [offset]="allBands.pageable?.pageNumber" [limit]="allBands.size" [externalSorting]="true" (sort)="onBandSort($event)"
+                         [messages]="{emptyMessage:'Andmed puuduvad.',totalMessage: 'esitajat'}">
+              <ngx-datatable-column prop="name" name="Esitaja nimi" width="33">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <button routerLink="/song/{{row.id}}" type="button" class="btn btn-link btn-sm p-0 username">{{row.name}}</button>
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="songCount" name="Laulude arv" width="33">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <p>{{row.songCount}} <svg-icon tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="editUser(row.id)" src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':12, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></p>
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="introduction" name="Lühitutvustus" width="33">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                      <p>{{row.introduction}}</p>
+                  </ng-template>
+              </ngx-datatable-column>
+              <ngx-datatable-column prop="" name="" width="33">
+                  <ng-template class="editCol" let-row="row" ngx-datatable-cell-template>
+                      <p class="editUser">
+                          <svg-icon tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="openEditBandModal(row)" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3, 'margin-right.px': 10 }"></svg-icon>
+                          <svg-icon tooltip="Kustuta" show-delay="400" placement="right" theme="light" (click)="openDeleteBandModal(row.id)" src="/assets/svg/garbage.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(194, 54, 22)', 'margin-bottom.px':4 }"></svg-icon>
+                      </p>
+                  </ng-template>
+              </ngx-datatable-column>
+          </ngx-datatable>
+      </div>
+  </div>
+  <div class="sidebarContainer">
+    <div *ngIf="activeTab === 'bands'" class="flex-item-sidebar">
+        <button (click)="openAddBandModalComponent()"><b>+</b> Lisa esitaja</button>
+    </div>
+    <div class="flex-item-sidebar" data-aos="fade-up" data-aos-duration="900">
+        <h6 *ngIf="activeTab === 'users'" class="cardHeader"><svg-icon src="/assets/svg/settings.svg" [svgStyle]="{ 'width.px':24, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Kasutajate filtrid</h6>
+        <h6 *ngIf="activeTab === 'bands'" class="cardHeader"><svg-icon src="/assets/svg/settings.svg" [svgStyle]="{ 'width.px':24, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Esitajate filtrid</h6>
+        <h6 *ngIf="activeTab === 'songs'" class="cardHeader"><svg-icon src="/assets/svg/settings.svg" [svgStyle]="{ 'width.px':24, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Laulude filtrid</h6>
+        <div *ngIf="activeTab === 'users'" class="custom filterContainer">
+            <div class="filterItem">
+                <input [(ngModel)]="userFilter.username" (keyup)="userFilterKeyUp($event)" placeholder="Kasutajanimi" type="text">
+            </div>
+            <div class="filterItem">
+                <input [(ngModel)]="userFilter.email" (keyup)="userFilterKeyUp($event)" placeholder="Email" type="text">
+            </div>
+            <div class="filterItem">
+                <ng-select placeholder="Rollid" appendTo="body" [items]="roles" [multiple]="false" [closeOnSelect]="false"
+                           [searchable]="false" bindLabel="readable" bindValue="name" [(ngModel)]="userFilter.roles">
+                </ng-select>
+            </div>
+            <div class="filterItem">
+                <ng-select placeholder="Staatus" appendTo="body" [items]="statuses" [multiple]="false" [closeOnSelect]="true"
+                           [searchable]="false" bindLabel="readable" bindValue="name" [(ngModel)]="userFilter.status">
+                </ng-select>
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'songs'" class="custom filterContainer">
+            <div class="filterItem">
+                <input [(ngModel)]="songFilter.name" (keyup)="songFilterKeyUp($event)" placeholder="Laulu nimi" type="text">
+            </div>
+            <div class="filterItem">
+                <input [(ngModel)]="songFilter.band" (keyup)="songFilterKeyUp($event)" placeholder="Esitaja nimi" type="text">
+            </div>
+            <div class="filterItem">
+                <input [(ngModel)]="songFilter.suggestedBand" (keyup)="songFilterKeyUp($event)" placeholder="Pakutud esitaja" type="text">
+            </div>
+            <div class="filterItem">
+                <input [(ngModel)]="songFilter.author" (keyup)="songFilterKeyUp($event)" placeholder="Sõnade autor" type="text">
+            </div>
+            <div class="filterItem">
+                <input [(ngModel)]="songFilter.user" (keyup)="songFilterKeyUp($event)" placeholder="Lisaja nimi" type="text">
+            </div>
+            <div class="filterItem">
+                <ng-select placeholder="Staatus" appendTo="body" [items]="songStatuses" [multiple]="false" [closeOnSelect]="true"
+                           [searchable]="false" bindLabel="readable" bindValue="name" [(ngModel)]="songFilter.status">
+                </ng-select>
+            </div>
+        </div>
+        <div *ngIf="activeTab === 'bands'" class="custom filterContainer">
+            <div class="filterItem">
+                <input [(ngModel)]="bandFilter.name" (keyup)="bandFilterKeyUp($event)" placeholder="Esitaja nimi" type="text">
+            </div>
+        </div>
+        <button *ngIf="activeTab === 'users'" (click)="userFilterKeyUp($event)">Filtreeri</button>
+        <button *ngIf="activeTab === 'bands'" (click)="bandFilterKeyUp($event)">Filtreeri</button>
+        <button *ngIf="activeTab === 'songs'" (click)="songFilterKeyUp($event)">Filtreeri</button>
+    </div>
+    <div class="flex-item-sidebar statBar" data-aos="fade-up" data-aos-duration="900">
+      <h6 class="cardHeader"><svg-icon src="/assets/svg/stats.svg" [svgStyle]="{ 'width.px':25, 'fill':'rgb(0,168,97)', 'margin-bottom.px':11 }"></svg-icon> Statistika</h6>
+      <ul class="stats">
+        <li>Kasutajaid kokku: <b>{{totalUsers}}</b></li>
+        <li>Laule kokku: <b>{{totalSongs}}</b></li>
+        <li>Aktiivsed laulud: <b>{{activeSongs}}</b></li>
+        <li>Mitteaktiivsed laulud: <b>{{inactiveSongs}}</b></li>
+        <li>Esitajaid kokku: <b>{{totalBands}}</b></li>
+      </ul>
+    </div>
+  </div>
+</div>

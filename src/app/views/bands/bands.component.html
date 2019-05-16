@@ -1,11 +1,11 @@
 <div class="container">
   <div class="flex-item-main" data-aos="fade-up" data-aos-duration="700">
     <div class="head">
-      <h1><svg-icon src="/assets/svg/levels-1.svg" [svgStyle]="{ 'width.px':50, 'fill':'rgb(0,168,97)', 'margin-bottom.px':7 }"></svg-icon> Ansamblid</h1>
+      <h1><svg-icon src="/assets/svg/levels-1.svg" [svgStyle]="{ 'width.px':50, 'fill':'rgb(0,168,97)', 'margin-bottom.px':7 }"></svg-icon> Esitajad</h1>
     </div>
     <div>
       <ul class="bandListContainer">
-        <li class="flex-item-list" *ngFor="let band of allBands"><span class="startingLetter">{{band.name | slice:0:1}}</span><span class="bandListName">{{band.name}}</span></li>
+        <li [routerLink]="'/bands/' + band.id" class="flex-item-list" *ngFor="let band of allBands"><span class="startingLetter">{{band.name | slice:0:1}}</span><span class="bandListName">{{band.name}}</span><span class="songCount">{{band.songCount}} <span *ngIf="band.songCount != 1">laulu</span><span *ngIf="band.songCount === 1">laul</span></span></li>
       </ul>
     </div>
   </div>

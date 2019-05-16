@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="sidebar">
+    Muuda lugu
+  </div>
+  <div class="content">
+    <form *ngIf="editSongForm" [formGroup]="editSongForm">
+      <h1>Esitaja*</h1>
+      <ng-select required formControlName="band" placeholder="Vali esitaja" [items]="allBands" bindLabel="name"></ng-select>
+      <div *ngIf="editSongFormSubmitted && editSongForm.controls.band.errors" class="validationError">
+        <div *ngIf="editSongForm.controls.band.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Esitaja valik on <b>kohustuslik!</b></div>
+      </div>
+      <h1>Laulu nimi*</h1>
+      <input required formControlName="name" placeholder="Sisesta laulu nimi" class="bandNameInput" type="text">
+      <div *ngIf="editSongFormSubmitted && editSongForm.controls.name.errors" class="validationError">
+        <div *ngIf="editSongForm.controls.name.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Laulu nimi on <b>kohustuslik!</b></div>
+      </div>
+      <h1>Sõnade autor*</h1>
+      <input required formControlName="author" placeholder="Sisesta autori nimi" class="bandNameInput" type="text">
+      <div *ngIf="editSongFormSubmitted && editSongForm.controls.author.errors" class="validationError">
+        <div *ngIf="editSongForm.controls.author.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Autor on <b>kohustuslik!</b></div>
+      </div>
+      <h1>YouTube link</h1>
+      <input formControlName="youtubeUrl" placeholder="Sisesta laulu YouTube link" class="bandNameInput" type="text">
+      <h1>Laulu sõnad ja akordid*</h1>
+      <textarea minlength="300" required formControlName="content" class="bandNameInput textarea"></textarea>
+      <div *ngIf="editSongFormSubmitted && editSongForm.controls.content.errors" class="validationError">
+        <div *ngIf="editSongForm.controls.content.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Laulu sisu on <b>kohustuslik!</b></div>
+        <div *ngIf="editSongForm.controls.content.errors.minlength">
+          <svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Palun sisesta veel vähemalt <b>{{300 - editSongForm.controls.content.value.length}}</b> tähemärki!</div>
+      </div>
+      <h1>Staatus*</h1>
+      <ng-select required formControlName="status" placeholder="Vali esitaja" [items]="songStatuses" bindLabel="readable" bindValue="name"></ng-select>
+      <div *ngIf="editSongFormSubmitted && editSongForm.controls.status.errors" class="validationError">
+        <div *ngIf="editSongForm.controls.status.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Staatus on <b>kohustuslik!</b></div>
+      </div>
+      <div class="buttonDiv">
+        <button type="button" class="submitButton" (click)="editSong()">Muuda lugu</button>
+      </div>
+    </form>
+  </div>
+</div>
