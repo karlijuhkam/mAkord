@@ -298,10 +298,10 @@ ul li:hover {
 @media only screen and (max-width: 1024px) {
 
     .content {
-        font-size: 13px;
+        font-size: 12px;
         white-space: pre;
         text-align: left;
-        width: 78%;
+        width: 75%;
         margin: 0 auto;
         padding-bottom: 70px;
     }

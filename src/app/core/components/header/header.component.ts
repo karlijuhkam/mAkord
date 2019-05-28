@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {BsModalService} from 'ngx-bootstrap';
 import {UserService} from '../../service/user.service';
 import {AuthService} from '../../service/auth.service';
@@ -14,6 +14,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class HeaderComponent implements OnInit {
 
+  @ViewChild('navbarToggler') navbarToggler: ElementRef;
   userData;
   modalRef;
   searchString;
@@ -53,6 +54,26 @@ export class HeaderComponent implements OnInit {
         this.toastr.error('Palun sisesta vähemalt kaks tähemärki.', 'Viga!');
       } else {
         this.router.navigate(['/results'], { queryParams: { search: this.searchString}});
+      }
+    }
+  }
+
+  navBarTogglerIsVisible() {
+    return this.navbarToggler.nativeElement.offsetParent !== null;
+  }
+
+  collapseNav() {
+    if (this.navBarTogglerIsVisible()) {
+      this.navbarToggler.nativeElement.click();
+    }
+  }
+
+  checkForEnter(event) {
+    if (event.keyCode === 13) {
+      if (this.searchString.length < 2) {
+        return;
+      } else {
+        this.collapseNav();
       }
     }
   }
