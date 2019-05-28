@@ -203,3 +203,30 @@ button {
     font-size: 0.8rem;
     margin-bottom: 15px;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 1024px) {
+    .resultsHeader {
+        width: 90%;
+    }
+
+    .dataContainer {
+        max-width: 90%;
+        display: block;
+    }
+
+    .data-flex-item {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .like {
+        font-size: 0.9rem;
+        width: 13%;
+    }
+
+    .profileData {
+        padding: 10px 25px;
+    }
+
+}
