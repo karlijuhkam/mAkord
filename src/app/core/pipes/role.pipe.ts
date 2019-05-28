@@ -9,13 +9,13 @@ export class RolePipe implements PipeTransform {
     let role = '';
     switch (value) {
       case 'admin':
-        role = 'Administraator';
+        role = 'administraator';
         break;
       case 'moderator':
-        role = 'Moderaator';
+        role = 'moderaator';
         break;
       case 'user':
-        role = 'Tavakasutaja';
+        role = 'tavakasutaja';
         break;
     }
 

@@ -53,9 +53,9 @@ export class AddBandModalComponent implements OnInit {
         }, (err) => {
           this.addBandFormSubmitted = false;
           if (err.status === 409) {
-            this.toastr.error('Sellise nimega esitaja on olemas.');
+            this.toastr.error('Sellise nimega esitaja on olemas.', 'Viga!');
           } else {
-            this.toastr.error('Viga esitaja lisamisel!');
+            this.toastr.error('Viga esitaja lisamisel!', 'Viga!');
           }
         });
   }

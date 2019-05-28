@@ -48,9 +48,9 @@ export class SongService {
         });
     }
 
-  public getPopularSongs(): Observable<any> {
+  public getPopularSongs(filter: SongFilter): Observable<any> {
       return new Observable(observer => {
-          this.http.get(environment.API_URL + '/popularsongs').subscribe(
+          this.http.get(environment.API_URL + '/popularsongs', {params: filter.getParams()}).subscribe(
               (data: any) => {
                   observer.next(data);
               },
@@ -70,9 +70,9 @@ export class SongService {
         });
     }
 
-  public getRecentSongs(): Observable<any> {
+  public getRecentSongs(filter: SongFilter): Observable<any> {
       return new Observable(observer => {
-          this.http.get(environment.API_URL + '/recentsongs').subscribe(
+          this.http.get(environment.API_URL + '/recentsongs', {params: filter.getParams()}).subscribe(
               (data: any) => {
                   observer.next(data);
               },
@@ -103,12 +103,34 @@ export class SongService {
     });
   }
 
+    public getLikedSongs(filter: SongFilter): Observable<any> {
+        return new Observable(observer => {
+            this.http.get(environment.API_URL + '/likedsongs', {params: filter.getParams()}).subscribe(
+                (data: any) => {
+                    observer.next(data);
+                },
+                (err: ErrorResponse) => this.handleError(observer, err)
+            );
+        });
+    }
+
+    public getAddedSongs(filter: SongFilter): Observable<any> {
+        return new Observable(observer => {
+            this.http.get(environment.API_URL + '/addedsongs', {params: filter.getParams()}).subscribe(
+                (data: any) => {
+                    observer.next(data);
+                },
+                (err: ErrorResponse) => this.handleError(observer, err)
+            );
+        });
+    }
+
     public addSong(request: SongRequest, successMessage?: string): Observable<Song> {
         return new Observable(observer => {
             this.http.post(environment.API_URL + '/songs', request).subscribe(
                 (data: Song) => {
                     if (successMessage) {
-                        this.toastr.success(successMessage);
+                        this.toastr.success(successMessage, 'Lisatud!');
                     }
                     observer.next(data);
                 },
@@ -122,7 +144,7 @@ export class SongService {
             this.http.patch(environment.API_URL + '/songs/' + id, request).subscribe(
                 (data: Song) => {
                     if (successMessage) {
-                        this.toastr.success(successMessage);
+                        this.toastr.success(successMessage, 'Muudetud!');
                     }
                     observer.next(data);
                 },
@@ -136,8 +158,19 @@ export class SongService {
             this.http.delete(environment.API_URL + '/songs/' + id).subscribe(
                 (data: Song) => {
                     if (successMessage) {
-                        this.toastr.success(successMessage);
+                        this.toastr.success(successMessage, 'Kustutatud!!');
                     }
+                    observer.next(data);
+                },
+                (err: ErrorResponse) => this.handleError(observer, err)
+            );
+        });
+    }
+
+    public searchSongs(search): Observable<any> {
+        return new Observable(observer => {
+            this.http.get(environment.API_URL + '/searchsongs?search=' + search).subscribe(
+                (data: any) => {
                     observer.next(data);
                 },
                 (err: ErrorResponse) => this.handleError(observer, err)

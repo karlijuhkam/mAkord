@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {User, UserFilter} from '../model/user/user';
+import {User, UserFilter, UserRequest} from '../model/user/user';
 import {environment} from '../../../environments/environment';
 import {Role, RoleType} from '../model/user/role';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {ErrorResponse} from '../model/error';
+import {Song, SongRequest} from '../model/song/song';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,31 @@ export class UserService {
     }
   }
 
+  public getUserById(id): Observable<any> {
+    return new Observable(observer => {
+      this.http.get(this.ENDPOINT + '/' + id).subscribe(
+          (data) => {
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
   public getUsers(filter: UserFilter): Observable<any> {
     return new Observable(observer => {
       this.http.get(this.ENDPOINT, {params: filter.getParams()}).subscribe(
+          (data) => {
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  public getRoles(): Observable<any> {
+    return new Observable(observer => {
+      this.http.get(environment.API_URL + '/roles').subscribe(
           (data) => {
             observer.next(data);
           },
@@ -57,10 +80,39 @@ export class UserService {
     this.currentUser.next(user);
   }
 
-  public getTopUsers(): Observable<any> {
+  public getTopUsers(filter: UserFilter): Observable<any> {
     return new Observable(observer => {
-      this.http.get(environment.API_URL + '/topusers').subscribe(
+      this.http.get(environment.API_URL + '/topusers', {params: filter.getParams()}).subscribe(
           (data: any) => {
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  public patchProfile(request: UserRequest, successMessage?: string): Observable<User> {
+    return new Observable(observer => {
+      this.http.patch(environment.API_URL + '/profile', request).subscribe(
+          (data: User) => {
+            this.setUserData(data);
+            if (successMessage) {
+              this.toastr.success(successMessage, 'Muudetud!');
+            }
+            observer.next(data);
+          },
+          (err: ErrorResponse) => this.handleError(observer, err)
+      );
+    });
+  }
+
+  public patchUser(request: UserRequest, id, successMessage?: string): Observable<User> {
+    return new Observable(observer => {
+      this.http.patch(environment.API_URL + '/users/' + id, request).subscribe(
+          (data: User) => {
+            if (successMessage) {
+              this.toastr.success(successMessage, 'Muudetud!');
+            }
             observer.next(data);
           },
           (err: ErrorResponse) => this.handleError(observer, err)

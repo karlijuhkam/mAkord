@@ -1,4 +1,5 @@
 <div class="container">
+  <h1 class="closeBtn"><i (click)="close()" class="fas fa-times"></i></h1>
   <div class="sidebar">
    Lisa lugu
   </div>
@@ -9,7 +10,7 @@
             <input type="radio" checked="checked" name="radio" (click)="updateValidators(true)">
             <span class="checkmark"></span>
         </label>
-        <label class="label">Esitaja nimi puudub nimistust
+        <label class="label">Esitaja nimi puudub
             <input type="radio" name="radio" (click)="updateValidators(false)">
             <span class="checkmark"></span>
         </label>

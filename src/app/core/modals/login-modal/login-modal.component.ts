@@ -37,14 +37,14 @@ export class LoginModalComponent implements OnInit {
     this.isLoginSubmitting = true;
     this.authService.loginRequest(this.loginRequest).subscribe((data) => {
       this.isLoginSubmitting = false;
-      this.toastr.success('Tere tulemast, ' + data.user.username);
+      this.toastr.success(data.user.username, 'Tere tulemast!');
       this.closeModal();
     }, (err: HttpErrorResponse) => {
       this.isLoginSubmitting = false;
       if (err.status === 403 ) {
-          this.toastr.error('Kasutaja on blokeeritud!');
+          this.toastr.error('Kasutaja on blokeeritud!', 'Viga!');
       } else {
-          this.toastr.error('Vale email või parool');
+          this.toastr.error('Vale email või parool', 'Viga!');
       }
     });
   }
@@ -54,12 +54,12 @@ export class LoginModalComponent implements OnInit {
     this.authService.forgotPasswordRequest({ email: this.forgotPasswordEmail }).subscribe(
         (data) => {
           this.isForgotPasswordSubmitting = false;
-          this.toastr.success('Uus parool saadetud emailile ' + this.forgotPasswordEmail);
+          this.toastr.success('Uus parool saadetud emailile ' + this.forgotPasswordEmail, 'Email saadetud!');
         },
         (err: HttpErrorResponse) => {
           this.isForgotPasswordSubmitting = false;
           if (err.status === 404) {
-            this.toastr.error('Sellise emailiga kasutaja puudub.');
+            this.toastr.error('Sellise emailiga kasutaja puudub.', 'Viga!');
           }
         }
     );
@@ -71,7 +71,7 @@ export class LoginModalComponent implements OnInit {
         (data) => {
           this.isRegisterSubmitting = false;
           this.rightPanelActive = true;
-          this.toastr.success('Kasutaja loodud! Võite nüüd sisse logida.');
+          this.toastr.success('Võite nüüd sisse logida.', 'Kasutaja loodud!');
         },
         (err: ErrorResponse) => {
           this.toastr.error(err.error.errorDescription);

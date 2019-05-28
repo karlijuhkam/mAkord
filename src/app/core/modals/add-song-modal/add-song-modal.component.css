@@ -139,3 +139,33 @@ h1 {
     font-size: 0.8rem;
     padding: 8px 20px;
 }
+
+.closeBtn {
+    display: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 1024px) {
+    .label {
+        font-size: 0.6rem;
+    }
+    .container {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        width: 100%;
+        padding-top: 0;
+    }
+
+    .closeBtn {
+        display: block;
+        color: darkgrey;
+        text-align: right;
+        padding-right: 10px;
+    }
+}

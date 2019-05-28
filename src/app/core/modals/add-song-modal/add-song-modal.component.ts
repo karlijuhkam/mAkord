@@ -92,7 +92,7 @@ export class AddSongModalComponent implements OnInit {
     this.songService.addSong(request, 'Uus lugu lisatud!')
         .subscribe(data => {
           this.close();
-        }, (err) => this.toastr.error('Viga laulu lisamisel!'));
+        }, (err) => this.toastr.error('Viga laulu lisamisel!', 'Viga!'));
   }
 
   detectKeys(e) {

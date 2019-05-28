@@ -32,8 +32,8 @@ export class SongFilter {
     suggestedBand?: string;
     user?: string;
     status?: string;
-    page: 0;
-    size: 10;
+    page: number;
+    size: number;
     sort?: string;
     sortDir?: string;
 

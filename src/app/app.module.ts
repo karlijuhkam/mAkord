@@ -31,6 +31,12 @@ import { EditSongModalComponent } from './core/modals/add-song-modal/edit-song-m
 import { DeleteSongModalComponent } from './core/modals/delete-song-modal/delete-song-modal.component';
 import { EditBandModalComponent } from './core/modals/add-band-modal/edit-band-modal/edit-band-modal.component';
 import { DeleteBandModalComponent } from './core/modals/add-band-modal/delete-band-modal/delete-band-modal.component';
+import { ProfileComponent } from './views/profile/profile.component';
+import { ChangePasswordModalComponent } from './core/modals/change-password-modal/change-password-modal.component';
+import { ResultsComponent } from './views/results/results.component';
+import { ChartsComponent } from './views/charts/charts.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { EditUserModalComponent } from './core/modals/edit-user-modal/edit-user-modal.component';
 
 
 @NgModule({
@@ -51,7 +57,12 @@ import { DeleteBandModalComponent } from './core/modals/add-band-modal/delete-ba
     EditSongModalComponent,
     DeleteSongModalComponent,
     EditBandModalComponent,
-    DeleteBandModalComponent
+    DeleteBandModalComponent,
+    ProfileComponent,
+    ChangePasswordModalComponent,
+    ResultsComponent,
+    ChartsComponent,
+    EditUserModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -67,6 +78,7 @@ import { DeleteBandModalComponent } from './core/modals/add-band-modal/delete-ba
     ReactiveFormsModule,
     TooltipModule,
     NgxDatatableModule,
+    NgxPaginationModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right',
       closeButton: true,
@@ -80,7 +92,9 @@ import { DeleteBandModalComponent } from './core/modals/add-band-modal/delete-ba
     AddBandModalComponent,
     EditBandModalComponent,
     DeleteSongModalComponent,
-    DeleteBandModalComponent
+    DeleteBandModalComponent,
+    ChangePasswordModalComponent,
+    EditUserModalComponent
   ],
   providers: [
     BsModalRef,

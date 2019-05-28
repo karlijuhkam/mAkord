@@ -12,6 +12,7 @@ import {EditSongModalComponent} from '../../core/modals/add-song-modal/edit-song
 import {DeleteSongModalComponent} from '../../core/modals/delete-song-modal/delete-song-modal.component';
 import {EditBandModalComponent} from '../../core/modals/add-band-modal/edit-band-modal/edit-band-modal.component';
 import {DeleteBandModalComponent} from '../../core/modals/add-band-modal/delete-band-modal/delete-band-modal.component';
+import {EditUserModalComponent} from '../../core/modals/edit-user-modal/edit-user-modal.component';
 
 @Component({
   selector: 'app-control-panel',
@@ -258,7 +259,6 @@ export class ControlPanelComponent implements OnInit {
           this.currentSongFilter = JSON.stringify(this.songFilter);
           this.allSongs = result;
           this.songData = result.content;
-          console.log(result);
         }
     );
   }
@@ -321,6 +321,16 @@ export class ControlPanelComponent implements OnInit {
     });
   }
 
+  openEditUserModal(id) {
+    const initialState = {
+      userId: id.id
+    };
+    this.modalRef = this.modalService.show(EditUserModalComponent, { class: 'addSongModal', initialState});
+    this.modalRef.content.refresh.subscribe(($event) => {
+      this.getUsers();
+    });
+  }
+
   deleteSong(id) {
     this.songService.deleteSong(id, 'Laul kustutatud.').subscribe(
         data => {
@@ -331,7 +341,6 @@ export class ControlPanelComponent implements OnInit {
   }
 
   openDeleteSongModal(id) {
-    console.log(id);
     this.modalRef = this.modalService.show(DeleteSongModalComponent, { class: 'modal-sm'});
     this.modalRef.content.delete.subscribe(($event) => {
       this.deleteSong(id);

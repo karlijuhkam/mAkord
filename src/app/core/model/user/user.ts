@@ -1,4 +1,5 @@
 import {Role} from './role';
+import {AbstractControl} from '@angular/forms';
 
 export interface User {
     id: number;
@@ -9,13 +10,21 @@ export interface User {
     addedSongsCount: number;
 }
 
+export interface UserRequest {
+    username?: string;
+    status?: string;
+    roles?: Role[];
+    oldPassword?: string;
+    newPassword?: string;
+}
+
 export class UserFilter {
     email?: string;
     username?: string;
     roles?: string;
     status?: string;
-    page: 0;
-    size: 10;
+    page?: number;
+    size?: number;
     sort?: string;
     sortDir?: string;
 
@@ -58,5 +67,18 @@ export class UserFilter {
             params.sortDir = this.sortDir;
         }
         return params;
+    }
+}
+
+export class PasswordValidation {
+
+    static MatchPassword(AC: AbstractControl) {
+        const password = AC.get('newPassword').value;
+        const confirmPassword = AC.get('repeatPassword').value;
+        if (password !== confirmPassword) {
+            AC.get('repeatPassword').setErrors( {MatchPassword: true} );
+        } else {
+            return null;
+        }
     }
 }

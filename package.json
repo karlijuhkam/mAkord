@@ -31,6 +31,7 @@
     "ng2-tooltip-directive": "^2.1.9",
     "ngx-bootstrap": "^4.0.0",
     "ngx-datatable": "^1.0.3",
+    "ngx-pagination": "^3.2.1",
     "ngx-toastr": "^10.0.2",
     "pdfmake": "^0.1.56",
     "rxjs": "~6.3.3",

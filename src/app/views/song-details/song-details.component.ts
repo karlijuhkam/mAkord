@@ -30,7 +30,7 @@ export class SongDetailsComponent implements OnInit {
   updateDate;
   songDisabled = false;
   modalRef;
-  bandSongs: Song[];
+  bandSongs: Song[] = [];
 
   constructor(private songService: SongService,
               private userService: UserService,
@@ -133,6 +133,7 @@ export class SongDetailsComponent implements OnInit {
               }
           );
       }
+      this.transposeValue = 0;
   }
 
   generatePdf() {
@@ -198,10 +199,10 @@ export class SongDetailsComponent implements OnInit {
       this.songService.likeUnlikeSong(this.songId).subscribe(
           () => {
               if (this.liked) {
-                  this.toastr.success('Laul lemmikutest eemaldatud!');
+                  this.toastr.success('Laul lemmikutest eemaldatud!', 'Eemaldatud!');
                   this.likeCount--;
               } else {
-                  this.toastr.success('Laul lisatud lemmikutesse!');
+                  this.toastr.success('Laul lisatud lemmikutesse!', 'Lisatud!');
                   this.likeCount++;
               }
               this.liked = !this.liked;

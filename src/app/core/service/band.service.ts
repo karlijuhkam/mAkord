@@ -4,7 +4,6 @@ import {environment} from '../../../environments/environment';
 import {ErrorResponse} from '../model/error';
 import {Router} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
-import {Song, SongFilter, SongRequest} from '../model/song/song';
 import {Band, BandFilter, BandRequest} from '../model/band/band';
 import {ToastrService} from 'ngx-toastr';
 
@@ -54,7 +53,7 @@ export class BandService {
             this.http.post(environment.API_URL + '/bands', request).subscribe(
                 (data: Band) => {
                     if (successMessage) {
-                        this.toastr.success(successMessage);
+                        this.toastr.success(successMessage, 'Lisatud!');
                     }
                     observer.next(data);
                 },
@@ -68,7 +67,7 @@ export class BandService {
             this.http.patch(environment.API_URL + '/bands/' + id, request).subscribe(
                 (data: Band) => {
                     if (successMessage) {
-                        this.toastr.success(successMessage);
+                        this.toastr.success(successMessage, 'Muudetud!');
                     }
                     observer.next(data);
                 },
@@ -82,8 +81,19 @@ export class BandService {
             this.http.delete(environment.API_URL + '/bands/' + id).subscribe(
                 (data: Band) => {
                     if (successMessage) {
-                        this.toastr.success(successMessage);
+                        this.toastr.success(successMessage, 'Kustutatud!');
                     }
+                    observer.next(data);
+                },
+                (err: ErrorResponse) => this.handleError(observer, err)
+            );
+        });
+    }
+
+    public searchBands(search): Observable<any> {
+        return new Observable(observer => {
+            this.http.get(environment.API_URL + '/searchbands?search=' + search).subscribe(
+                (data: any) => {
                     observer.next(data);
                 },
                 (err: ErrorResponse) => this.handleError(observer, err)

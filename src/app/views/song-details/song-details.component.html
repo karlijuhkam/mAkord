@@ -1,11 +1,12 @@
 <div class="container">
   <div class="flex-item-main" data-aos="fade-up" data-aos-duration="700">
     <div *ngIf="!songDisabled">
+      <h1 class="hide" *ngIf="!userData">foo</h1>
       <h1 class="topIcon" *ngIf="activeSong?.status === 'inactive'" class="like"><svg-icon class="editIcon" (click)="openEditSongModal()" tooltip="Muuda laulu" placement="top" theme="light" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon><svg-icon (click)="makeSongActive()" tooltip="Muuda laul aktiivseks" placement="top" theme="light" src="/assets/svg/check.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></h1>
-      <h1 class="topIcon" *ngIf="!liked && activeSong?.status === 'active'" class="like"><svg-icon *ngIf="userService.isAdmin() || userService.isModerator()" class="editIcon" (click)="openEditSongModal()" tooltip="Muuda laulu" placement="top" theme="light" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon><svg-icon (click)="likeUnlike()" tooltip="Lisa laul lemmikutesse" placement="left" theme="light" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></h1>
-      <h1 class="topIcon" *ngIf="liked && activeSong?.status === 'active'" class="like"><svg-icon *ngIf="userService.isAdmin() || userService.isModerator()" class="editIcon" (click)="openEditSongModal()" tooltip="Muuda laulu" placement="top" theme="light" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon><svg-icon (click)="likeUnlike()" tooltip="Eemalda laul lemmikutest" placement="left" theme="light" src="/assets/svg/heart-filled.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></h1>
+      <h1 class="topIcon" *ngIf="userData && !liked && activeSong?.status === 'active'" class="like"><svg-icon *ngIf="userService.isAdmin() || userService.isModerator()" class="editIcon" (click)="openEditSongModal()" tooltip="Muuda laulu" placement="top" theme="light" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon><svg-icon (click)="likeUnlike()" tooltip="Lisa laul lemmikutesse" placement="left" theme="light" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></h1>
+      <h1 class="topIcon" *ngIf="userData && liked && activeSong?.status === 'active'" class="like"><svg-icon *ngIf="userService.isAdmin() || userService.isModerator()" class="editIcon" (click)="openEditSongModal()" tooltip="Muuda laulu" placement="top" theme="light" src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon><svg-icon (click)="likeUnlike()" tooltip="Eemalda laul lemmikutest" placement="left" theme="light" src="/assets/svg/heart-filled.svg" [svgStyle]="{ 'width.px':28, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></h1>
       <div class="head">
-        <h1><svg-icon src="/assets/svg/levels-1.svg" [svgStyle]="{ 'width.px':50, 'fill':'rgb(0,168,97)', 'margin-bottom.px':7 }"></svg-icon> <span class="bandName"> {{activeSong?.band?.name}}</span> - {{activeSong?.name}}</h1>
+        <h1><svg-icon id="songIcon1" src="/assets/svg/levels-1.svg" [svgStyle]="{ 'width.px':50, 'fill':'rgb(0,168,97)', 'margin-bottom.px':7 }"></svg-icon> <span class="bandName"> {{activeSong?.band?.name}}</span> - {{activeSong?.name}}</h1>
         <div class="songMetaData">
           <p class="metaItem" [routerLink]="'/bands/' + activeSong?.band?.id">Esitaja: <span class="metaLink">{{activeSong?.band?.name}}</span></p>
           <p class="metaItem">Autor: <span>{{activeSong?.author}}</span></p>
@@ -13,6 +14,21 @@
           <p class="metaItem"> {{likeCount}} <svg-icon src="/assets/svg/heart-filled.svg" [svgStyle]="{ 'width.px':11, 'fill':'rgb(0,168,97)', 'margin-bottom.px':2 }"></svg-icon></p>
           <p class="metaItem">Lisatud: <span class="date">{{createDate}}</span></p>
           <p (click)="generatePdf()" class="metaItem dlPdf"> <svg-icon src="/assets/svg/download.svg" [svgStyle]="{ 'width.px':15, 'fill':'rgb(0,168,97)', 'margin-bottom.px':6 }"></svg-icon> Laadi alla PDF</p>
+        </div>
+        <p>
+          <button id="openInfBtn" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Ava laulu info
+          </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <p [routerLink]="'/bands/' + activeSong?.band?.id">Esitaja: <span class="metaLink">{{activeSong?.band?.name}}</span></p>
+            <p>Autor: <span>{{activeSong?.author}}</span></p>
+            <p [routerLink]="'/users/' + activeSong?.user?.id">Lisas: <span class="metaLink">{{activeSong?.user?.username}}</span></p>
+            <p> {{likeCount}} <svg-icon src="/assets/svg/heart-filled.svg" [svgStyle]="{ 'width.px':11, 'fill':'rgb(0,168,97)', 'margin-bottom.px':2 }"></svg-icon></p>
+            <p>Lisatud: <span class="date">{{createDate}}</span></p>
+            <p (click)="generatePdf()" class="dlPdf"> <svg-icon src="/assets/svg/download.svg" [svgStyle]="{ 'width.px':15, 'fill':'rgb(0,168,97)', 'margin-bottom.px':6 }"></svg-icon> Laadi alla PDF</p>
+          </div>
         </div>
         <div class="toolbar">
           <button tooltip="Kõrgenda laulu helistikku" placement="top" theme="light" show-delay="400" class="transpose" (click)="transposeUp()"><svg-icon src="/assets/svg/up-arrow.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(245,245,245)', 'margin-bottom.px':1 }"></svg-icon></button>

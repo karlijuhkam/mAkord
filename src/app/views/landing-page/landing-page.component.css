@@ -127,3 +127,286 @@ button:focus {outline:0;}
     font-size: 0.92rem;
     width: 10%;
 }
+
+.secondary {
+    display: none;
+}
+
+.logInButton {
+    display: none;
+}
+
+.tabPic {
+    display: none;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 699px) {
+
+    .tabPic {
+        display: none;
+    }
+
+    .logInButton button {
+        background-color: rgba(0, 0, 0);
+        border: 1px solid #00A861;
+        color: #00A861;
+    }
+
+    .logInButton button:hover {
+        background-color: #00A861;
+        border: 1px solid #00A861;
+        color: #FFF;
+    }
+
+    h1  {
+        font-size: 1.2rem;
+    }
+
+    h6 {
+        font-size: 0.6rem;
+    }
+
+    .text {
+        font-size: 0.6rem;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        margin-top: 25%;
+        background-color: transparent;
+    }
+
+    .tabPic {
+        background-color: transparent;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .flex-item {
+        paddding-top: 50px!important;
+        width: 100%;
+        padding-right: 2%;
+    }
+
+    .container {
+        margin-top: 12px;
+        max-width: 90%;
+    }
+
+    .textContainer {
+        display: none;
+    }
+
+    .flex-item h1 {
+        padding-top: 20px;
+    }
+
+    .secondary {
+        display: block;
+        max-width: 90%;
+        margin-top: 110%;
+    }
+
+    .main {
+        display: none;
+    }
+
+    .data-flex-item {
+        font-size: 0.8rem;
+        width: 100%;
+        margin-bottom: 8px;
+        display: block;
+    }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (min-width: 700px) and (max-width: 768px) {
+    .tabPic {
+        display: block;
+    }
+
+    h1  {
+        font-size: 1.8rem;
+    }
+
+    h6 {
+        font-size: 0.8rem;
+    }
+
+    .text {
+        font-size: 0.8rem;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        margin-top: 12%;
+        background-color: transparent;
+    }
+
+    .tabPic {
+        background-color: transparent;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .flex-item {
+        paddding-top: 50px!important;
+        width: 100%;
+        padding-right: 12%;
+    }
+
+    .container {
+        margin-top: 12px;
+    }
+
+    .flex-item h1 {
+        padding-top: 20px;
+    }
+
+    .secondary {
+        display: flex;
+    }
+
+    .main {
+        display: none;
+    }
+
+    .data-flex-item {
+        width: 49%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 769px) and (max-width: 1100px) {
+    .tabPic {
+        display: block;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        margin-top: 12%;
+        background-color: transparent;
+    }
+
+    .tabPic {
+        background-color: transparent;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .flex-item {
+        paddding-top: 50px!important;
+        width: 100%;
+        padding-right: 12%;
+    }
+
+    .container {
+        margin-top: 12px;
+    }
+
+    .flex-item h1 {
+        padding-top: 20px;
+    }
+
+    .secondary {
+        display: flex;
+    }
+
+    .main {
+        display: none;
+    }
+
+    .data-flex-item {
+        width: 49%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 1101px) and (max-width: 1300px) {
+
+    .tabPic {
+        display: block;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .flex-item {
+        paddding-top: 50px!important;
+        width: 100%;
+        padding-right: 150px;
+    }
+
+    .flex-item h1 {
+        padding-top: 30px;
+    }
+
+    .secondary {
+        display: flex;
+    }
+
+    .main {
+        display: none;
+    }
+
+    .data-flex-item {
+        width: 49%;
+    }
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1301px) and (max-width: 1450px) {
+    h1  {
+        font-size: 1.8rem;
+    }
+
+    h6 {
+        font-size: 0.8rem;
+    }
+
+    .text {
+        padding-right: 30px;
+    }
+
+    .mainList {
+        font-size: 0.8rem;
+    }
+
+    .like {
+        font-size: 0.8rem;
+        width: 15%;
+    }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1451px) and (max-width: 1800px) {
+    h1  {
+        font-size: 2rem;
+    }
+
+    h6 {
+        font-size: 0.8rem;
+    }
+
+    .mainList {
+        font-size: 0.8rem;
+    }
+
+    .like {
+        font-size: 0.8rem;
+        width: 15%;
+    }
+}

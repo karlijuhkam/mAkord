@@ -4,6 +4,8 @@ import {UserService} from '../../service/user.service';
 import {AuthService} from '../../service/auth.service';
 import {LoginModalComponent} from '../../modals/login-modal/login-modal.component';
 import {AddSongModalComponent} from '../../modals/add-song-modal/add-song-modal.component';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +16,12 @@ export class HeaderComponent implements OnInit {
 
   userData;
   modalRef;
+  searchString;
 
   constructor(private modalService: BsModalService,
               private userService: UserService,
+              private router: Router,
+              private toastr: ToastrService,
               private authService: AuthService) {
     this.userService.currentUser.subscribe(currentUser => {
       this.userData = currentUser;
@@ -33,8 +38,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.authService.logoutRequest().subscribe(
-        (data) => console.log(data),
-        err => console.log(err)
+        (data) => {}
     );
   }
 
@@ -42,5 +46,15 @@ export class HeaderComponent implements OnInit {
     this.modalRef = this.modalService.show(AddSongModalComponent, { class: 'addSongModal', });
   }
 
+  search(event) {
+    this.searchString = event.target.value;
+    if (event.keyCode === 13) {
+      if (this.searchString.length < 2) {
+        this.toastr.error('Palun sisesta vähemalt kaks tähemärki.', 'Viga!');
+      } else {
+        this.router.navigate(['/results'], { queryParams: { search: this.searchString}});
+      }
+    }
+  }
 
 }

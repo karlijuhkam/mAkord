@@ -47,7 +47,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column prop="" name="" width="1">
         <ng-template class="editCol" let-row="row" ngx-datatable-cell-template>
-            <p tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="editUser(row.id)" class="editUser"><svg-icon src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></p>
+            <p tooltip="Muuda" show-delay="400" placement="right" theme="light" (click)="openEditUserModal(row)" class="editUser"><svg-icon src="/assets/svg/pen.svg" [svgStyle]="{ 'width.px':20, 'fill':'rgb(0,168,97)', 'margin-bottom.px':3 }"></svg-icon></p>
         </ng-template>
       </ngx-datatable-column>
     </ngx-datatable>

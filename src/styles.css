@@ -32,6 +32,10 @@ html {
   max-width: 750px;
 }
 
+.changePasswordModal {
+  max-width: 600px;
+}
+
 .toast-success {
   background-color: #00A861;
 }

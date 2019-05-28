@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BandService} from '../../core/service/band.service';
 import {Band} from '../../core/model/band/band';
 import {SongService} from '../../core/service/song.service';
-import {Song} from '../../core/model/song/song';
+import {Song, SongFilter} from '../../core/model/song/song';
 
 @Component({
   selector: 'app-bands',
@@ -22,10 +22,20 @@ export class BandsComponent implements OnInit {
     this.bandService.getAllBands().subscribe(
         data => this.allBands = data
     );
-    this.songService.getPopularSongs().subscribe(
+    this.getPopularSongs();
+    this.getRecentSongs();
+  }
+
+  getPopularSongs() {
+    const filter = new SongFilter();
+    this.songService.getPopularSongs(filter).subscribe(
         data => this.popularSongs = data.content
     );
-    this.songService.getRecentSongs().subscribe(
+  }
+
+  getRecentSongs() {
+    const filter = new SongFilter();
+    this.songService.getRecentSongs(filter).subscribe(
         data => this.recentSongs = data.content
     );
   }

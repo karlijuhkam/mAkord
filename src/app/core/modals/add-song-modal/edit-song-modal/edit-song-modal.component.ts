@@ -104,7 +104,7 @@ export class EditSongModalComponent implements OnInit {
           this.close();
         }, (err) => {
           this.editSongFormSubmitted = false;
-          this.toastr.error('Viga laulu muutmisel!');
+          this.toastr.error('Viga laulu muutmisel!', 'Viga!');
         });
   }
 

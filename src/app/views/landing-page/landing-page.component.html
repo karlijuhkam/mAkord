@@ -1,4 +1,7 @@
-<div class="container" data-aos="fade-down" data-aos-duration="500">
+<div class="container tabPic">
+  <img src="/assets/img/splash.png" alt="">
+</div>
+<div class="container textContainer" data-aos="fade-down" data-aos-duration="500">
   <div class="flex-item text">
     <h1 class=""mainPhrase>Kõik <span class="highlight">akordid</span> ühest kohast</h1>
     <h6>Vaata, mängi ja lisa tuntud ning vähem tuntud eesti muusikat</h6>
@@ -14,26 +17,40 @@
   </div>
 </div>
 
-<div class="dataContainer">
+<div class="dataContainer main">
   <div class="data-flex-item" data-aos="fade-up" data-aos-duration="700">
     <h6 class="cardHeader"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':32, 'fill':'rgb(0,168,97)' }"></svg-icon> Populaarseimad lood</h6>
     <ul>
       <li [routerLink]="'/song/' + popular.id" class="popListItem" *ngFor="let popular of popularSongs"><div class="popListItemCol"><span class="bandName">{{popular.band?.name}}</span> {{popular.name}}</div><div class="popListItemCol like"><span>{{popular.likeCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':2 }"></svg-icon> </div></li>
     </ul>
-    <button>Vaata veel</button>
+    <button routerLink="charts">Vaata edetabeleid</button>
   </div>
   <div class="data-flex-item" data-aos="fade-up" data-aos-duration="700">
     <h6 class="cardHeader"><svg-icon src="/assets/svg/fast-forward.svg" [svgStyle]="{ 'width.px':27, 'fill':'rgb(0,168,97)','margin-bottom.px':5  }"></svg-icon> Viimati lisatud lood</h6>
     <ul>
       <li [routerLink]="'/song/' + recent.id" class="popListItem" *ngFor="let recent of recentSongs"><div class="popListItemCol"><span class="bandName">{{recent.band?.name}}</span> {{recent.name}}</div></li>
     </ul>
-    <button>Vaata veel</button>
+    <button routerLink="charts">Vaata edetabeleid</button>
   </div>
   <div class="data-flex-item" data-aos="fade-up" data-aos-duration="900">
     <h6 class="cardHeader"><svg-icon src="/assets/svg/users.svg" [svgStyle]="{ 'width.px':26, 'fill':'rgb(0,168,97)','margin-bottom.px':6  }"></svg-icon> Aktiivseimad kasutajad</h6>
     <ul>
       <li [routerLink]="'/user/' + user.id" class="popListItem" *ngFor="let user of topUsers"><div class="popListItemCol"><svg-icon src="/assets/svg/user-1.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':5  }"></svg-icon> {{user.username}}</div><div class="popListItemCol like"><span>{{user.addedSongsCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)' }"></svg-icon> </div></li>
     </ul>
-    <button>Vaata veel</button>
+    <button routerLink="charts">Vaata edetabeleid</button>
   </div>
 </div>
+
+<div class="dataContainer secondary">
+  <div class="data-flex-item" data-aos="fade-up" data-aos-duration="700">
+    <button routerLink="charts">Vaata edetabeleid</button>
+  </div>
+  <div class="data-flex-item" data-aos="fade-up" data-aos-duration="900">
+    <button routerLink="bands">Vaata ansambleid</button>
+  </div>
+  <div class="data-flex-item logInButton" data-aos="fade-up" data-aos-duration="900">
+    <button *ngIf="!userData" (click)="openLoginModal()">Logi sisse</button>
+    <button *ngIf="userData" routerLink="profile">Minu profiil</button>
+  </div>
+</div>
+
