@@ -1,0 +1,32 @@
+<div class="dataContainer">
+  <div class="data-flex-item">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':32, 'fill':'rgb(0,168,97)' }"></svg-icon> Populaarseimad lood</h6>
+    <ul>
+      <li [routerLink]="'/song/' + popular.id" class="popListItem" *ngFor="let popular of popularSongs"><div class="popListItemCol"><span class="bandName">{{popular.band?.name}}</span> {{popular.name}}</div><div class="popListItemCol like"><span>{{popular.likeCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':2 }"></svg-icon> </div></li>
+    </ul>
+    <div *ngIf="popularSongsData?.totalElements > 10" class="paging">
+      <button [disabled]="popularSongsData?.first" [class.noshow]="popularSongsData?.first" (click)="popularPageDown()"><svg-icon src="/assets/svg/back.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px': 3  }"></svg-icon> Eelmised</button><span class="pageNo">{{popularSongsData?.number + 1}}</span><button (click)="popularPageUp()" [disabled]="popularSongsData.last" [class.noshow]="popularSongsData.last">Järgmised <svg-icon src="/assets/svg/next-2.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon></button>
+      <div class="pageCount">Lehti kokku: {{popularSongsData?.totalPages}}</div>
+    </div>
+  </div>
+  <div class="data-flex-item">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/fast-forward.svg" [svgStyle]="{ 'width.px':27, 'fill':'rgb(0,168,97)','margin-bottom.px':5  }"></svg-icon> Viimati lisatud lood</h6>
+    <ul>
+      <li [routerLink]="'/song/' + recent.id" class="popListItem" *ngFor="let recent of recentSongs"><div class="popListItemCol"><span class="bandName">{{recent.band?.name}}</span> {{recent.name}}</div></li>
+    </ul>
+    <div *ngIf="recentSongsData?.totalElements > 10" class="paging">
+      <button [disabled]="recentSongsData?.first" [class.noshow]="recentSongsData?.first" (click)="recentPageDown()"><svg-icon src="/assets/svg/back.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon> Eelmised</button><span class="pageNo">{{recentSongsData?.number + 1}}</span><button (click)="recentPageUp()" [disabled]="recentSongsData.last" [class.noshow]="recentSongsData.last">Järgmised <svg-icon src="/assets/svg/next-2.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon></button>
+      <div class="pageCount">Lehti kokku: {{recentSongsData?.totalPages}}</div>
+    </div>
+  </div>
+  <div class="data-flex-item">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/users.svg" [svgStyle]="{ 'width.px':26, 'fill':'rgb(0,168,97)','margin-bottom.px':6  }"></svg-icon> Aktiivseimad kasutajad</h6>
+    <ul>
+      <li [routerLink]="'/user/' + user.id" class="popListItem" *ngFor="let user of topUsers"><div class="popListItemCol"><svg-icon src="/assets/svg/user-1.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon> {{user.username}}</div><div class="popListItemCol like"><span>{{user.addedSongsCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)' }"></svg-icon> </div></li>
+    </ul>
+    <div *ngIf="topUsersData?.totalElements > 10" class="paging">
+      <button [disabled]="topUsersData?.first" [class.noshow]="topUsersData?.first" (click)="usersPageDown()"><svg-icon src="/assets/svg/back.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon> Eelmised</button><span class="pageNo">{{topUsersData?.number + 1}}</span><button (click)="usersPageUp()" [disabled]="topUsersData.last" [class.noshow]="topUsersData.last">Järgmised <svg-icon src="/assets/svg/next-2.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon></button>
+      <div class="pageCount">Lehti kokku: {{topUsersData?.totalPages}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="sidebar">
+    Muuda kasutajat
+  </div>
+  <div class="content">
+    <form *ngIf="userForm" [formGroup]="userForm">
+      <h1>Kasutajanimi*</h1>
+      <input required formControlName="username" placeholder="Sisesta laulu nimi" class="bandNameInput" type="text">
+      <div *ngIf="userFormSubmitted && userForm.controls.username.errors" class="validationError">
+        <div *ngIf="userForm.controls.username.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Kasutajanimi on <b>kohustuslik!</b></div>
+      </div>
+      <h1>Roll*</h1>
+      <ng-select required formControlName="roles" placeholder="Staatus" bindLabel="readable" [items]="allRoles"></ng-select>
+      <div *ngIf="userFormSubmitted && userForm.controls.roles.errors" class="validationError">
+        <div *ngIf="userForm.controls.roles.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Roll on <b>kohustuslik!</b></div>
+      </div>
+      <h1>Staatus*</h1>
+      <ng-select required formControlName="status" placeholder="Staatus" [items]="userStatuses" bindLabel="readable" bindValue="name"></ng-select>
+      <div *ngIf="userFormSubmitted && userForm.controls.status.errors" class="validationError">
+        <div *ngIf="userForm.controls.status.errors.required"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':5 }"></svg-icon> Staatus on <b>kohustuslik!</b></div>
+      </div>
+      <div class="buttonDiv">
+        <button type="button" class="submitButton" (click)="editUser()">Muuda lugu</button>
+      </div>
+    </form>
+  </div>
+</div>

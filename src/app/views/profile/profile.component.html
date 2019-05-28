@@ -1,0 +1,39 @@
+<div class="dataContainer">
+  <div class="data-flex-item">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/users.svg" [svgStyle]="{ 'width.px':26, 'fill':'rgb(0,168,97)','margin-bottom.px':6  }"></svg-icon> Minu profiil</h6>
+    <div class="profileData">
+      <p>Kasutajanimi: <span class="profileUsername">{{user?.username}}</span></p>
+      <p>Roll: <span class="profileBold">{{user?.roles[0]?.name | role}}</span></p>
+      <p>Email: <span class="profileBold">{{user?.email}}</span></p>
+      <p>Valinud <span class="profileNumber">{{user?.likedSongsCount}}</span> lemmiklaulu</p>
+      <p>Lisanud <span class="profileNumber">{{user?.addedSongsCount}}</span> laulu</p>
+      <p>Registreerunud <span class="profileNumber">{{registerDate}}</span></p>
+    </div>
+    <button id="pwBtn" (click)="openChangePasswordModal()">Muuda parooli</button>
+  </div>
+  <div class="data-flex-item">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/heart-filled.svg" [svgStyle]="{ 'width.px':26, 'fill':'rgb(0,168,97)','margin-bottom.px':5  }"></svg-icon> Lemmikud lood</h6>
+    <p *ngIf="likedSongs?.length < 1" class="proTip">Kliki laulu juures nupul "<svg-icon src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':26, 'fill':'rgb(0,168,97)','margin-bottom.px':5, 'margin-left.px': 3, 'margin-right.px': 3 }"></svg-icon>",<br>
+      et see hiljem siit üles leida!</p>
+    <ul *ngIf="likedSongs?.length > 0">
+      <li [routerLink]="'/song/' + recent.song?.id" class="popListItem" *ngFor="let recent of likedSongs"><div class="popListItemCol"><span class="bandName">{{recent.song?.band?.name}}</span> {{recent.song?.name}}</div></li>
+    </ul>
+    <div *ngIf="likedSongData?.totalElements > 10" class="paging">
+      <button class="pgBtn"  [disabled]="likedSongData?.first" [class.noshow]="likedSongData?.first" (click)="likedSongsPageDown()"><svg-icon src="/assets/svg/back.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon> Eelmised</button><span class="pageNo">{{likedSongData?.number + 1}}</span><button class="pgBtn"  (click)="likedSongsPageUp()" [disabled]="likedSongData.last" [class.noshow]="likedSongData.last">Järgmised <svg-icon src="/assets/svg/next-2.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon></button>
+      <div class="pageCount">Lehti kokku: {{likedSongData?.totalPages}}</div>
+    </div>
+  </div>
+  <div class="data-flex-item">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':29, 'fill':'rgb(0,168,97)','margin-bottom.px':4  }"></svg-icon> Minu lisatud lood</h6>
+    <div *ngIf="addedSongs?.length < 1" class="proTip">Sinu lisatud laulud ilmuvad siia.<br>Vajuta selleks navigatsiooniribal nuppu
+      <br><div class="nav-link"><svg-icon src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':22, 'fill':'rgb(0,168,97)' }"></svg-icon> Lisa lugu</div>
+    </div>
+    <ul *ngIf="addedSongs?.length > 0">
+      <li [routerLink]="'/song/' + popular.id" class="popListItem" *ngFor="let popular of addedSongs"><div class="popListItemCol"><span class="bandName">{{popular.band?.name}}</span> {{popular.name}}</div><div class="popListItemCol like"><span>{{popular.likeCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':2 }"></svg-icon> </div></li>
+    </ul>
+    <div *ngIf="addedSongData?.totalElements > 10" class="paging">
+      <button class="pgBtn" [disabled]="addedSongData?.first" [class.noshow]="addedSongData?.first" (click)="addedSongsPageDown()"><svg-icon src="/assets/svg/back.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon> Eelmised</button><span class="pageNo">{{addedSongData?.number + 1}}</span><button class="pgBtn"  (click)="addedSongsPageUp()" [disabled]="addedSongData.last" [class.noshow]="addedSongData.last">Järgmised <svg-icon src="/assets/svg/next-2.svg" [svgStyle]="{ 'width.px':13, 'fill':'rgb(0,168,97)','margin-bottom.px':3  }"></svg-icon></button>
+      <div class="pageCount">Lehti kokku: {{addedSongData?.totalPages}}</div>
+    </div>
+  </div>
+</div>

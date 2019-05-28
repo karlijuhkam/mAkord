@@ -1,0 +1,19 @@
+<div class="resultsHeader" data-aos="fade-up" data-aos-duration="500">
+  <h1><svg-icon src="/assets/svg/search.svg" [svgStyle]="{ 'width.px':30, 'fill':'rgb(0,168,97)','margin-bottom.px':5  }"></svg-icon> Tulemused otsingule '{{search}}'</h1>
+</div>
+<div class="dataContainer">
+  <div class="data-flex-item" data-aos="fade-up" data-aos-duration="700">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/levels.svg" [svgStyle]="{ 'width.px':32, 'fill':'rgb(0,168,97)' }"></svg-icon> Laulud</h6>
+    <div class="resultNotFound" *ngIf="songResults?.length < 1"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':4 }"></svg-icon> Laulude vasteid ei leitud.</div>
+    <ul *ngIf="songResults?.length > 0">
+      <li [routerLink]="'/song/' + popular.id" class="popListItem" *ngFor="let popular of songResults"><div class="popListItemCol"><span class="bandName">{{popular.band}}</span> {{popular.name}}</div><div class="popListItemCol like"><span>{{popular.likeCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/heart.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':2 }"></svg-icon> </div></li>
+    </ul>
+  </div>
+  <div class="data-flex-item" data-aos="fade-up" data-aos-duration="700">
+    <h6 class="cardHeader"><svg-icon src="/assets/svg/users.svg" [svgStyle]="{ 'width.px':27, 'fill':'rgb(0,168,97)','margin-bottom.px':5  }"></svg-icon> Esitajad</h6>
+    <div class="resultNotFound" *ngIf="bandResults?.length < 1"><svg-icon src="/assets/svg/megaphone.svg" [svgStyle]="{ 'width.px':18, 'fill':'rgb(0,168,97)', 'margin-bottom.px':4 }"></svg-icon> Esitajate vasteid ei leitud.</div>
+    <ul *ngIf="bandResults?.length > 0">
+      <li [routerLink]="'/bands/' + popular.id" class="popListItem" *ngFor="let popular of bandResults"><div class="popListItemCol"><span class="bandRes">{{popular.name}}</span></div><div class="popListItemCol like"><span>{{popular.songCount}} </span> <svg-icon class="likeIcon" src="/assets/svg/playlist.svg" [svgStyle]="{ 'width.px':16, 'fill':'rgb(0,168,97)','margin-bottom.px':2 }"></svg-icon> </div></li>
+    </ul>
+  </div>
+</div>
